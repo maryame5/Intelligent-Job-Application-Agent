@@ -1,0 +1,644 @@
+{
+  "instructions": "10 offres fictives variées couvrant chaque scénario critique du pipeline (scoring hybride, matching sémantique, always_feature, gating C/D, détection de rôle). Pour chaque test_case, fais tourner l'offre.description à travers OfferAnalyzer.run_full_analysis() puis CVTailor.generate() (avec et sans application_context simulant un score LLM, selon le champ simulate_llm_score). Remplis les champs 'results' avec les valeurs obtenues. Renvoie-moi ce fichier rempli pour évaluation — ne modifie pas les champs 'offer', 'category', 'purpose' ni 'expected_behavior'.",
+  "test_cases": [
+    {
+      "id": "T01",
+      "category": "match_fort_lexical",
+      "purpose": "Cas simple : vocabulaire de l'offre identique au profil. Score déterministe et score LLM doivent converger naturellement (baseline, ne teste pas encore la fusion).",
+      "offer": {
+        "job_title": "AI Engineer",
+        "company_name": "NovaTech Solutions",
+        "description": "Nous recherchons un AI Engineer pour concevoir des pipelines RAG et des agents LLM en Python. Stack: Python, LangChain, FastAPI, PostgreSQL, Docker. Vous travaillerez sur des systèmes multi-agents et de l'orchestration de workflows IA."
+      },
+      "simulate_llm_score": 85,
+      "expected_behavior": "Priorité A ou B, score hybride élevé, auto_apply_recommended = true, sélection probable de l'expérience DXC / projet Intelligent Analytics.",
+      "results": {
+        "deterministic_score": 80,
+        "llm_score": 85,
+        "hybrid_score": 82,
+        "priority": "A",
+        "auto_apply_recommended": true,
+        "semantic_bonus_applied": true,
+        "selected_experiences": [
+          "dxc_technology",
+          "ministère_de_l'inves",
+          "lotus_capital_capqua"
+        ],
+        "selected_projects": [
+          "bank_review_pipeline",
+          "airport_intelligence_anal",
+          "easyapply__smart_recruitm"
+        ],
+        "hallucination_issues": null,
+        "manual_notes": null,
+        "status": "Strong Match",
+        "risk_level": "low",
+        "dominant_role_detected": "ai_engineer",
+        "seniority_mismatch": false,
+        "top_experience_semantic_similarities": [
+          {
+            "id": "dxc_technology",
+            "semantic_similarity": 0.0
+          },
+          {
+            "id": "ministère_de_l'inves",
+            "semantic_similarity": 0.0
+          },
+          {
+            "id": "lotus_capital_capqua",
+            "semantic_similarity": 0.0
+          }
+        ],
+        "top_project_semantic_similarities": [
+          {
+            "id": "bank_review_pipeline",
+            "semantic_similarity": 0.0
+          },
+          {
+            "id": "airport_intelligence_anal",
+            "semantic_similarity": 0.0
+          },
+          {
+            "id": "easyapply__smart_recruitm",
+            "semantic_similarity": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "T02",
+      "category": "match_semantique_paraphrase",
+      "purpose": "Teste le Problème 2 (embeddings) : aucun mot-clé exact du profil, mais le sens est proche. Sans le bonus sémantique, ce score devrait être bas ; avec, il devrait remonter.",
+      "offer": {
+        "job_title": "Ingénieur Data",
+        "company_name": "AtlasFlow Analytics",
+        "description": "Poste axé sur la conception de flux de traitement de données à grande échelle, la mise en place d'entrepôts de données relationnels, et l'automatisation de tâches d'ingénierie répétitives via des scripts et des workflows orchestrés. Une bonne maîtrise des outils de visualisation métier et des tableaux de bord décisionnels est appréciée."
+      },
+      "simulate_llm_score": 70,
+      "expected_behavior": "Sans bonus sémantique : score déterministe bas (peu/pas de mots-clés exacts type 'PostgreSQL', 'Airflow', 'Power BI'). Avec bonus sémantique actif : score qui remonte nettement. Comparer les deux runs (avec/sans clé API) si possible.",
+      "results": {
+        "deterministic_score": 30,
+        "llm_score": 70,
+        "hybrid_score": 50,
+        "priority": "C",
+        "auto_apply_recommended": false,
+        "semantic_bonus_applied": true,
+        "selected_experiences": [
+          "dxc_technology",
+          "lotus_capital_capqua",
+          "ministère_de_l'inves"
+        ],
+        "selected_projects": [
+          "easyapply__smart_recruitm",
+          "airport_intelligence_anal",
+          "bank_review_pipeline"
+        ],
+        "hallucination_issues": null,
+        "manual_notes": null,
+        "status": "Opportunistic Match",
+        "risk_level": "high",
+        "dominant_role_detected": "ai_engineer",
+        "seniority_mismatch": false,
+        "top_experience_semantic_similarities": [
+          {
+            "id": "dxc_technology",
+            "semantic_similarity": 0.0
+          },
+          {
+            "id": "lotus_capital_capqua",
+            "semantic_similarity": 0.0
+          },
+          {
+            "id": "ministère_de_l'inves",
+            "semantic_similarity": 0.0
+          }
+        ],
+        "top_project_semantic_similarities": [
+          {
+            "id": "easyapply__smart_recruitm",
+            "semantic_similarity": 0.0
+          },
+          {
+            "id": "airport_intelligence_anal",
+            "semantic_similarity": 0.0
+          },
+          {
+            "id": "bank_review_pipeline",
+            "semantic_similarity": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "T03",
+      "category": "desalignement_llm_vs_lexical",
+      "purpose": "Teste directement le Problème 1 (fusion des scores). Offre où le LLM devrait comprendre une forte pertinence conceptuelle malgré un vocabulaire très éloigné du profil au niveau lexical.",
+      "offer": {
+        "job_title": "Software Engineer - Backend",
+        "company_name": "Meridian Systems",
+        "description": "Nous cherchons un ingénieur backend junior sortant d'école d'ingénieur, capable de construire des services robustes et de manipuler de grands volumes d'information. Une appétence pour l'intelligence artificielle appliquée est un plus, sans expertise pointue exigée. Environnement API modernes et bases de données."
+      },
+      "simulate_llm_score": 78,
+      "expected_behavior": "C'est LE test critique du Problème 1 : le score hybride affiché doit être visiblement différent (et plus élevé) que le score déterministe seul si celui-ci est faible. Vérifier explicitement les deux valeurs brutes avant fusion.",
+      "results": {
+        "deterministic_score": 89,
+        "llm_score": 78,
+        "hybrid_score": 84,
+        "priority": "A",
+        "auto_apply_recommended": true,
+        "semantic_bonus_applied": true,
+        "selected_experiences": [
+          "dxc_technology",
+          "lotus_capital_capqua",
+          "ministère_de_l'inves"
+        ],
+        "selected_projects": [
+          "distributed_microservices",
+          "django_auction_site",
+          "easyapply__smart_recruitm"
+        ],
+        "hallucination_issues": null,
+        "manual_notes": null,
+        "status": "Strong Match",
+        "risk_level": "low",
+        "dominant_role_detected": "software_engineer",
+        "seniority_mismatch": false,
+        "top_experience_semantic_similarities": [
+          {
+            "id": "dxc_technology",
+            "semantic_similarity": 0.0
+          },
+          {
+            "id": "lotus_capital_capqua",
+            "semantic_similarity": 0.0
+          },
+          {
+            "id": "ministère_de_l'inves",
+            "semantic_similarity": 0.0
+          }
+        ],
+        "top_project_semantic_similarities": [
+          {
+            "id": "distributed_microservices",
+            "semantic_similarity": 0.0
+          },
+          {
+            "id": "django_auction_site",
+            "semantic_similarity": 0.0
+          },
+          {
+            "id": "easyapply__smart_recruitm",
+            "semantic_similarity": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "T04",
+      "category": "always_feature_forcee",
+      "purpose": "Teste le Problème 3 : offre qui correspond directement au domaine d'une expérience marquée always_feature (ex: DXC / data & analytics). Vérifie l'inclusion forcée sans liste nominative en dur.",
+      "offer": {
+        "job_title": "Data Engineer - Analytics Platform",
+        "company_name": "Cedar Insights",
+        "description": "Poste en data engineering : conception d'un pipeline multi-agents pour l'analyse de données métier, architecture backend, intégration de sources hétérogènes. Expérience en environnement de conseil/ESN appréciée."
+      },
+      "simulate_llm_score": 82,
+      "expected_behavior": "L'expérience marquée always_feature (ex: DXC / PFE Intelligent Analytics) doit apparaître dans selected_experiences, même si son score de matching brut n'est pas le plus haut du profil.",
+      "results": {
+        "deterministic_score": 56,
+        "llm_score": 82,
+        "hybrid_score": 69,
+        "priority": "B",
+        "auto_apply_recommended": true,
+        "semantic_bonus_applied": true,
+        "selected_experiences": [
+          "dxc_technology",
+          "lotus_capital_capqua",
+          "ministère_de_l'inves"
+        ],
+        "selected_projects": [
+          "bank_review_pipeline",
+          "distributed_microservices",
+          "django_auction_site"
+        ],
+        "hallucination_issues": null,
+        "manual_notes": null,
+        "status": "Medium Match",
+        "risk_level": "medium",
+        "dominant_role_detected": "data_engineer",
+        "seniority_mismatch": false,
+        "top_experience_semantic_similarities": [
+          {
+            "id": "dxc_technology",
+            "semantic_similarity": 0.73
+          },
+          {
+            "id": "lotus_capital_capqua",
+            "semantic_similarity": 0.661
+          },
+          {
+            "id": "ministère_de_l'inves",
+            "semantic_similarity": 0.655
+          }
+        ],
+        "top_project_semantic_similarities": [
+          {
+            "id": "bank_review_pipeline",
+            "semantic_similarity": 0.655
+          },
+          {
+            "id": "easyapply__smart_recruitm",
+            "semantic_similarity": 0.654
+          },
+          {
+            "id": "airport_intelligence_anal",
+            "semantic_similarity": 0.643
+          }
+        ]
+      }
+    },
+    {
+      "id": "T05",
+      "category": "hallucination_corpus_verite",
+      "purpose": "Teste le OutputValidator générique (corpus de vérité) : ajouter temporairement une entreprise fictive absente de profil.json dans le brouillon généré (via un prompt de test ou une insertion manuelle) pour vérifier que la détection fonctionne sans pattern nominatif codé en dur.",
+      "offer": {
+        "job_title": "Machine Learning Engineer",
+        "company_name": "Vertex Cognition",
+        "description": "Recherche ML Engineer avec expérience en MLOps, déploiement de modèles, et pipelines de données. Environnement fortement automatisé, culture d'ingénierie exigeante."
+      },
+      "simulate_llm_score": 75,
+      "expected_behavior": "Générer le CV normalement, puis injecter manuellement une phrase fictive du type 'Stage chez QuantumSoft Corp' dans le texte avant validation pour confirmer que OutputValidator la détecte comme hallucination générique (entreprise absente du corpus de vérité), sans qu'aucun pattern 'QuantumSoft' n'existe dans le code.",
+      "results": {
+        "deterministic_score": 52,
+        "llm_score": 75,
+        "hybrid_score": 64,
+        "priority": "B",
+        "auto_apply_recommended": true,
+        "semantic_bonus_applied": true,
+        "selected_experiences": [
+          "dxc_technology",
+          "ministère_de_l'inves",
+          "lotus_capital_capqua"
+        ],
+        "selected_projects": [
+          "airport_intelligence_anal",
+          "easyapply__smart_recruitm",
+          "bank_review_pipeline"
+        ],
+        "hallucination_issues": null,
+        "manual_notes": "Erreur pendant generate() - voir logs console. | Detection hallucination injectee: []",
+        "status": "Medium Match",
+        "risk_level": "medium",
+        "dominant_role_detected": "ai_engineer",
+        "seniority_mismatch": false,
+        "top_experience_semantic_similarities": [
+          {
+            "id": "dxc_technology",
+            "semantic_similarity": 0.657
+          },
+          {
+            "id": "ministère_de_l'inves",
+            "semantic_similarity": 0.615
+          },
+          {
+            "id": "lotus_capital_capqua",
+            "semantic_similarity": 0.609
+          }
+        ],
+        "top_project_semantic_similarities": [
+          {
+            "id": "airport_intelligence_anal",
+            "semantic_similarity": 0.62
+          },
+          {
+            "id": "text_to_video_generative_",
+            "semantic_similarity": 0.616
+          },
+          {
+            "id": "bank_review_pipeline",
+            "semantic_similarity": 0.606
+          }
+        ]
+      }
+    },
+    {
+      "id": "T06",
+      "category": "mismatch_seniorite",
+      "purpose": "Teste priorité basse / gating C-D. Offre senior très au-dessus du niveau du profil (junior/débutant).",
+      "offer": {
+        "job_title": "Senior Machine Learning Architect",
+        "company_name": "Orion Deep Systems",
+        "description": "Poste senior (8+ ans d'expérience minimum) pour piloter l'architecture ML à l'échelle groupe, encadrer une équipe de 10 ingénieurs, et définir la stratégie IA à 3 ans. Expertise reconnue en systèmes distribués à très grande échelle exigée."
+      },
+      "simulate_llm_score": 30,
+      "expected_behavior": "Priorité C ou D, auto_apply_recommended = false, statut 'Documents Ready — Review Recommended'. Vérifier que le gating bloque bien l'envoi automatique direct.",
+      "results": {
+        "deterministic_score": 70,
+        "llm_score": 30,
+        "hybrid_score": 50,
+        "priority": "C",
+        "auto_apply_recommended": false,
+        "semantic_bonus_applied": true,
+        "selected_experiences": [
+          "dxc_technology",
+          "ministère_de_l'inves",
+          "lotus_capital_capqua"
+        ],
+        "selected_projects": [
+          "airport_intelligence_anal",
+          "easyapply__smart_recruitm",
+          "bank_review_pipeline"
+        ],
+        "hallucination_issues": null,
+        "manual_notes": null,
+        "status": "Opportunistic Match",
+        "risk_level": "high",
+        "dominant_role_detected": "ai_engineer",
+        "seniority_mismatch": true,
+        "top_experience_semantic_similarities": [
+          {
+            "id": "dxc_technology",
+            "semantic_similarity": 0.665
+          },
+          {
+            "id": "ministère_de_l'inves",
+            "semantic_similarity": 0.61
+          },
+          {
+            "id": "lotus_capital_capqua",
+            "semantic_similarity": 0.607
+          }
+        ],
+        "top_project_semantic_similarities": [
+          {
+            "id": "easyapply__smart_recruitm",
+            "semantic_similarity": 0.648
+          },
+          {
+            "id": "airport_intelligence_anal",
+            "semantic_similarity": 0.638
+          },
+          {
+            "id": "bank_review_pipeline",
+            "semantic_similarity": 0.612
+          }
+        ]
+      }
+    },
+    {
+      "id": "T07",
+      "category": "hors_domaine",
+      "purpose": "Offre totalement hors du domaine technique (test de robustesse / non-régression, ne doit pas planter le pipeline).",
+      "offer": {
+        "job_title": "Chargé(e) de Clientèle",
+        "company_name": "Banque Al Amane",
+        "description": "Nous recherchons un(e) chargé(e) de clientèle pour gérer un portefeuille de particuliers, développer le fonds de commerce et assurer la conformité réglementaire des opérations bancaires."
+      },
+      "simulate_llm_score": 10,
+      "expected_behavior": "Score très bas, priorité D, auto_apply_recommended = false. Le pipeline doit gérer le cas proprement (pas d'exception, pas de CV halluciné pour combler l'absence de matière technique).",
+      "results": {
+        "deterministic_score": 38,
+        "llm_score": 10,
+        "hybrid_score": 24,
+        "priority": "D",
+        "auto_apply_recommended": false,
+        "semantic_bonus_applied": true,
+        "selected_experiences": [
+          "ministère_de_l'inves",
+          "lotus_capital_capqua",
+          "dxc_technology"
+        ],
+        "selected_projects": [
+          "public_employment_portal_",
+          "easyapply__smart_recruitm"
+        ],
+        "hallucination_issues": null,
+        "manual_notes": null,
+        "status": "Low Match",
+        "risk_level": "very_high",
+        "dominant_role_detected": "consulting",
+        "seniority_mismatch": false,
+        "top_experience_semantic_similarities": [
+          {
+            "id": "perception_meknès_bn",
+            "semantic_similarity": 0.595
+          },
+          {
+            "id": "lotus_capital_capqua",
+            "semantic_similarity": 0.578
+          },
+          {
+            "id": "ministère_de_l'inves",
+            "semantic_similarity": 0.554
+          }
+        ],
+        "top_project_semantic_similarities": [
+          {
+            "id": "student_portfolio_app",
+            "semantic_similarity": 0.566
+          },
+          {
+            "id": "public_employment_portal_",
+            "semantic_similarity": 0.565
+          },
+          {
+            "id": "gestion_de_cabinet_dentai",
+            "semantic_similarity": 0.548
+          }
+        ]
+      }
+    },
+    {
+      "id": "T08",
+      "category": "role_ambigu",
+      "purpose": "Teste ROLE_DETECTION_SIGNALS sur une offre à cheval entre deux familles de rôle (Data Engineer vs Software Engineer).",
+      "offer": {
+        "job_title": "Ingénieur Full Stack Data",
+        "company_name": "Helios Digital",
+        "description": "Vous développerez à la fois des pipelines de données (ETL, orchestration) et des APIs backend consommant ces données pour des applications web. Stack mixte : Python, SQL, React, Docker."
+      },
+      "simulate_llm_score": 68,
+      "expected_behavior": "Vérifier quel dominant_role est détecté et si le choix influence correctement la sélection d'expériences/projets (ne doit pas basculer arbitrairement vers un seul persona alors que l'offre est mixte).",
+      "results": {
+        "deterministic_score": 81,
+        "llm_score": 68,
+        "hybrid_score": 74,
+        "priority": "B",
+        "auto_apply_recommended": true,
+        "semantic_bonus_applied": true,
+        "selected_experiences": [
+          "dxc_technology",
+          "ministère_de_l'inves",
+          "lotus_capital_capqua"
+        ],
+        "selected_projects": [
+          "bank_review_pipeline",
+          "django_auction_site",
+          "easyapply__smart_recruitm"
+        ],
+        "hallucination_issues": null,
+        "manual_notes": null,
+        "dominant_role_detected": "data_engineer",
+        "status": "Medium Match",
+        "risk_level": "medium",
+        "seniority_mismatch": false,
+        "top_experience_semantic_similarities": [
+          {
+            "id": "ministère_de_l'inves",
+            "semantic_similarity": 0.719
+          },
+          {
+            "id": "dxc_technology",
+            "semantic_similarity": 0.716
+          },
+          {
+            "id": "lotus_capital_capqua",
+            "semantic_similarity": 0.65
+          }
+        ],
+        "top_project_semantic_similarities": [
+          {
+            "id": "bank_review_pipeline",
+            "semantic_similarity": 0.687
+          },
+          {
+            "id": "easyapply__smart_recruitm",
+            "semantic_similarity": 0.674
+          },
+          {
+            "id": "airport_intelligence_anal",
+            "semantic_similarity": 0.666
+          }
+        ]
+      }
+    },
+    {
+      "id": "T09",
+      "category": "genai_pointu",
+      "purpose": "Offre très orientée GenAI/prompt engineering, pour vérifier le positionnement du persona et la mise en avant du projet Intelligent Analytics (multi-agents, DXC).",
+      "offer": {
+        "job_title": "Generative AI Engineer",
+        "company_name": "Lumen Cognitive Labs",
+        "description": "Poste dédié à la conception d'architectures multi-agents basées sur des LLM, à l'ingénierie de prompts avancée, et à l'intégration de RAG dans des produits en production. Expérience avec frameworks d'orchestration d'agents fortement valorisée."
+      },
+      "simulate_llm_score": 90,
+      "expected_behavior": "Priorité A, score hybride élevé, sélection quasi-certaine du projet Intelligent Analytics (PFE) en position principale, persona/positioning orienté GenAI.",
+      "results": {
+        "deterministic_score": 70,
+        "llm_score": 90,
+        "hybrid_score": 80,
+        "priority": "A",
+        "auto_apply_recommended": true,
+        "semantic_bonus_applied": true,
+        "selected_experiences": [
+          "dxc_technology",
+          "lotus_capital_capqua",
+          "ministère_de_l'inves"
+        ],
+        "selected_projects": [
+          "airport_intelligence_anal",
+          "bank_review_pipeline",
+          "text_to_video_generative_"
+        ],
+        "hallucination_issues": null,
+        "manual_notes": null,
+        "status": "Strong Match",
+        "risk_level": "low",
+        "dominant_role_detected": "ai_engineer",
+        "seniority_mismatch": false,
+        "top_experience_semantic_similarities": [
+          {
+            "id": "dxc_technology",
+            "semantic_similarity": 0.713
+          },
+          {
+            "id": "ministère_de_l'inves",
+            "semantic_similarity": 0.644
+          },
+          {
+            "id": "lotus_capital_capqua",
+            "semantic_similarity": 0.642
+          }
+        ],
+        "top_project_semantic_similarities": [
+          {
+            "id": "text_to_video_generative_",
+            "semantic_similarity": 0.658
+          },
+          {
+            "id": "easyapply__smart_recruitm",
+            "semantic_similarity": 0.637
+          },
+          {
+            "id": "airport_intelligence_anal",
+            "semantic_similarity": 0.631
+          }
+        ]
+      }
+    },
+    {
+      "id": "T10",
+      "category": "offre_pauvre_en_details",
+      "purpose": "Offre très courte/vague, pour tester la robustesse du scoring et de la génération quand il y a peu de matière à analyser.",
+      "offer": {
+        "job_title": "Développeur",
+        "company_name": "TechCorp Maroc",
+        "description": "Nous recrutons un développeur motivé pour rejoindre notre équipe. Merci d'envoyer votre CV."
+      },
+      "simulate_llm_score": 40,
+      "expected_behavior": "Le pipeline ne doit pas halluciner de compétences précises pour compenser le manque d'information. Vérifier que le CV généré reste factuel et générique plutôt que d'inventer un alignement fictif avec l'offre.",
+      "results": {
+        "deterministic_score": 66,
+        "llm_score": 40,
+        "hybrid_score": 53,
+        "priority": "C",
+        "auto_apply_recommended": false,
+        "semantic_bonus_applied": true,
+        "selected_experiences": [
+          "dxc_technology",
+          "lotus_capital_capqua",
+          "ministère_de_l'inves"
+        ],
+        "selected_projects": [
+          "easyapply__smart_recruitm",
+          "airport_intelligence_anal",
+          "distributed_microservices"
+        ],
+        "hallucination_issues": null,
+        "manual_notes": "Erreur pendant generate() - voir logs console.",
+        "status": "Opportunistic Match",
+        "risk_level": "high",
+        "dominant_role_detected": "frontend_fullstack_ai_product",
+        "seniority_mismatch": false,
+        "top_experience_semantic_similarities": [
+          {
+            "id": "dxc_technology",
+            "semantic_similarity": 0.0
+          },
+          {
+            "id": "lotus_capital_capqua",
+            "semantic_similarity": 0.0
+          },
+          {
+            "id": "ministère_de_l'inves",
+            "semantic_similarity": 0.0
+          }
+        ],
+        "top_project_semantic_similarities": [
+          {
+            "id": "easyapply__smart_recruitm",
+            "semantic_similarity": 0.0
+          },
+          {
+            "id": "airport_intelligence_anal",
+            "semantic_similarity": 0.0
+          },
+          {
+            "id": "distributed_microservices",
+            "semantic_similarity": 0.0
+          }
+        ]
+      }
+    }
+  ]
+}

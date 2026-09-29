@@ -1,0 +1,31 @@
+.env
+profil.json
+
+# Local secrets and OAuth material
+*.json.bak
+*.pem
+*.key
+gmail_credentials.json
+credentials.json
+token.json
+
+.venv/
+
+__pycache__/
+*.pyc
+
+output/
+scraper.log
+jobs_tracker.csv
+agent/scrape_health_log.csv
+
+# Local caches and generated reports
+*.log
+*.pdf
+*.docx
+*.tmp
+profile.json
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+

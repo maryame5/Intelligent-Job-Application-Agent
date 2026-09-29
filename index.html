@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobHunt AI - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #10b981;
+            --danger: #ef4444;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 50%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #6366f1, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .job-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .job-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .job-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .job-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .company-name {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-new { background: rgba(99, 102, 241, 0.2); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.3); }
+        .badge-documents-ready { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+        .badge-applied { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-interview { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .badge-rejected { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+        .badge-default { background: rgba(148, 163, 184, 0.18); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.25); }
+
+        .job-details {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .job-details span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .job-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        button, a.btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.6rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+        }
+
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-hover); transform: scale(1.02); }
+        
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .btn-outline { 
+            background: transparent; 
+            border: 1px solid var(--border); 
+            color: var(--text);
+        }
+        .btn-outline:hover { background: var(--glass); border-color: var(--text-muted); }
+
+        .notes-area {
+            width: 100%;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            color: var(--text);
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal {
+            background: #1e293b;
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            width: 90%;
+            max-width: 800px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+            overflow-x: auto;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.5rem;
+            white-space: nowrap;
+        }
+        .tab-btn:hover { color: var(--text); }
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+        .tab-content {
+            display: none;
+            max-height: 400px;
+            overflow-y: auto;
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            padding-right: 1rem;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-content h1, .tab-content h2, .tab-content h3 { margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text); }
+        .tab-content ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+        .tab-content p { margin-bottom: 1rem; }
+
+        .search-bar {
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text);
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+        }
+
+        .terminal-container {
+            background: #050505;
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            height: 250px;
+            overflow-y: auto;
+            font-family: 'Courier New', Courier, monospace;
+            display: none;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            animation: fadeInDown 0.5s ease-out;
+        }
+
+        .terminal-output {
+            color: #10b981;
+            white-space: pre-wrap;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* Styling for Custom Tailoring Feature */
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .download-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .download-card:hover {
+            transform: translateY(-4px);
+            background: rgba(99, 102, 241, 0.05);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.15);
+        }
+
+        .download-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .download-card:hover .download-icon {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .download-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .download-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .glass-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            color: var(--text);
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .glass-input:focus {
+            border-color: #a855f7;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        .loading-steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+        }
+
+        .loading-step {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: all 0.3s;
+        }
+
+        .loading-step.active {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .loading-step.active .step-dot {
+            background: #a855f7;
+            box-shadow: 0 0 8px #a855f7;
+            animation: pulse 1s infinite alternate;
+        }
+
+        .loading-step.completed {
+            color: var(--accent);
+        }
+
+        .loading-step.completed .step-dot {
+            background: var(--accent);
+        }
+
+        .step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            transition: all 0.3s;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); opacity: 0.6; }
+            to { transform: scale(1.3); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                JobHunt AI Dashboard
+            </div>
+            <div class="header-actions" style="display: flex; gap: 1rem;">
+                <button class="btn" id="custom-tailor-btn" onclick="openCustomTailorModal()" style="background: linear-gradient(135deg, #a855f7, #6366f1); color: white; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4); border: none;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    ⚡ Personnalisation Manuelle
+                </button>
+                <button class="btn btn-primary" id="run-btn" onclick="runScraper()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3m-3-3l-2.25-2.25"></path></svg>
+                    Lancer le Scraper
+                </button>
+                <button class="btn btn-outline" id="stop-btn" onclick="stopScraper()" style="display: none; border-color: var(--danger); color: var(--danger);">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
+                    Arrêter le Scraper
+                </button>
+                <button class="btn btn-outline" onclick="loadJobs()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                    Actualiser
+                </button>
+            </div>
+        </header>
+
+        <div class="stats" id="stats">
+            <div class="stat-card">
+                <div class="stat-label">Total Offres</div>
+                <div class="stat-value" id="stat-total">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Nouvelles</div>
+                <div class="stat-value" id="stat-new" style="color: var(--accent);">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Docs Prêts</div>
+                <div class="stat-value" id="stat-ready">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Postulées</div>
+                <div class="stat-value" id="stat-applied" style="color: var(--accent);">0</div>
+            </div>
+        </div>
+
+        <div class="search-bar" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <input type="text" class="search-input" id="search-role" placeholder="🔍 Rechercher un rôle (ex: Data, AI)..." oninput="filterJobs()">
+            
+            <select class="search-input" id="filter-company" onchange="filterJobs()">
+                <option value="all">🏢 Toutes les entreprises</option>
+            </select>
+            
+            <select class="search-input" id="filter-city" onchange="filterJobs()">
+                <option value="all">📍 Toutes les villes</option>
+            </select>
+
+            <select class="search-input" id="filter-source" onchange="filterJobs()">
+                <option value="all">🌐 Toutes les sources</option>
+            </select>
+            
+            <select class="search-input" id="filter-status" onchange="filterJobs()">
+                <option value="all">📊 Tous les statuts</option>
+                <option value="New">Nouveau</option>
+                <option value="Documents Ready">Documents prêts</option>
+                <option value="Applied">Postulé</option>
+                <option value="Interview">Entretien</option>
+                <option value="Rejected">Refusé</option>
+            </select>
+        </div>
+
+        <div class="terminal-container" id="terminal-window">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
+                <span style="color: #666; font-size: 0.75rem; font-weight: bold; letter-spacing: 1px;">TERMINAL OUTPUT</span>
+                <button onclick="document.getElementById('terminal-window').style.display='none'" style="background: none; border: none; color: #666; cursor: pointer; padding: 0;">✖</button>
+            </div>
+            <div id="terminal-output" class="terminal-output"></div>
+        </div>
+
+        <div class="job-grid" id="job-grid">
+            <!-- Jobs will be loaded here -->
+            <div style="text-align: center; padding: 4rem; color: var(--text-muted);">
+                Chargement des offres...
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Détails -->
+    <div class="modal-overlay" id="job-modal" onclick="if(event.target===this) document.getElementById('job-modal').style.display='none'">
+        <div class="modal">
+            <button onclick="document.getElementById('job-modal').style.display='none'" style="position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer;">&times;</button>
+            <h2 id="modal-title" style="margin-bottom: 0.2rem; color: var(--text);">Titre</h2>
+            <div id="modal-subtitle" style="color: var(--primary); font-weight: 500; margin-bottom: 1rem; font-size: 1rem;">Entreprise</div>
+            
+            <div id="modal-emails" style="background: rgba(16, 185, 129, 0.1); color: var(--accent); padding: 0.75rem 1rem; border-radius: 0.5rem; font-weight: 600; margin-bottom: 1.5rem; font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+                📧 Contacts : <span id="modal-email-text"></span>
+            </div>
+            
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="switchTab(event, 'tab-desc')">Description</button>
+                <button class="tab-btn" onclick="switchTab(event, 'tab-cv')">CV Généré</button>
+                <button class="tab-btn" onclick="switchTab(event, 'tab-lm')">Lettre de Motivation</button>
+            </div>
+            
+            <div id="tab-desc" class="tab-content active"></div>
+            <div id="tab-cv" class="tab-content"></div>
+            <div id="tab-lm" class="tab-content"></div>
+            
+            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; gap: 1rem; justify-content: flex-end;">
+                <button class="btn btn-outline" onclick="document.getElementById('job-modal').style.display='none'">Fermer</button>
+                <button class="btn btn-primary" id="modal-apply-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    Générer & Postuler
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Personnalisation Manuelle -->
+    <div class="modal-overlay" id="custom-tailor-modal" onclick="if(event.target===this) closeCustomTailorModal()">
+        <div class="modal" style="max-width: 900px; border-color: rgba(168, 85, 247, 0.3); box-shadow: 0 25px 50px -12px rgba(168, 85, 247, 0.25);">
+            <button onclick="closeCustomTailorModal()" style="position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer;">&times;</button>
+            
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div style="background: linear-gradient(135deg, #a855f7, #6366f1); width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);">⚡</div>
+                <h2 style="color: var(--text); margin: 0;">Personnaliser pour une Offre Spécifique</h2>
+            </div>
+            <div style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                Saisissez les détails d'une offre d'emploi externe. L'intelligence artificielle adaptera en temps réel le profil candidat pour correspondre précisément aux prérequis, et rédigera une lettre de motivation percutante.
+            </div>
+            
+            <!-- FORMULAIRE DE SAISIE -->
+            <div id="custom-form-container">
+                <div class="form-row">
+                    <div>
+                        <label style="display: block; font-size: 0.8rem; color: var(--text-muted); font-weight: 600; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">Intitulé du Poste *</label>
+                        <input type="text" id="custom-job-title" class="glass-input" placeholder="Ex: AI Engineer, Backend Spring Boot...">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 0.8rem; color: var(--text-muted); font-weight: 600; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">Nom de l'Entreprise *</label>
+                        <input type="text" id="custom-company-name" class="glass-input" placeholder="Ex: DXC Technology, Lotus Capital...">
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); font-weight: 600; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">Description de l'Offre *</label>
+                    <textarea id="custom-job-description" class="glass-input" style="min-height: 180px; resize: vertical; font-family: inherit; line-height: 1.5;" placeholder="Copiez et collez la description complète de l'offre d'emploi ici (compétences recherchées, missions, profil recherché)..."></textarea>
+                </div>
+                
+                <div style="display: flex; justify-content: flex-end; gap: 1rem; border-top: 1px solid var(--border); padding-top: 1.5rem;">
+                    <button class="btn btn-outline" onclick="closeCustomTailorModal()">Annuler</button>
+                    <button class="btn" onclick="submitCustomTailor()" style="background: linear-gradient(135deg, #a855f7, #6366f1); color: white; font-weight: 600; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3m-3-3l-2.25-2.25"></path></svg>
+                        Générer Documents (IA)
+                    </button>
+                </div>
+            </div>
+
+            <!-- ECRAN DE CHARGEMENT PROGRESSIF -->
+            <div id="custom-loading-container" style="display: none; text-align: center; padding: 2rem 0;">
+                <div class="spinner" style="width: 50px; height: 50px; border-width: 4px; border-top-color: #a855f7; margin-bottom: 1.5rem;"></div>
+                <h3 id="loading-main-text" style="color: var(--text); font-size: 1.25rem; margin-bottom: 0.5rem;">Analyse de la demande...</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Veuillez patienter pendant que notre agent de recrutement rédige vos documents sur-mesure.</p>
+                
+                <div class="loading-steps-container" style="max-width: 450px; margin: 0 auto; text-align: left;">
+                    <div class="loading-step" id="step-1">
+                        <div class="step-dot"></div>
+                        <span>Analyse sémantique de la description de l'offre</span>
+                    </div>
+                    <div class="loading-step" id="step-2">
+                        <div class="step-dot"></div>
+                        <span>Recherche des correspondances dans le profil candidat</span>
+                    </div>
+                    <div class="loading-step" id="step-3">
+                        <div class="step-dot"></div>
+                        <span>Adaptation stratégique du CV (Optimisation ATS)</span>
+                    </div>
+                    <div class="loading-step" id="step-4">
+                        <div class="step-dot"></div>
+                        <span>Rédaction d'une lettre de motivation hyper-ciblée</span>
+                    </div>
+                    <div class="loading-step" id="step-5">
+                        <div class="step-dot"></div>
+                        <span>Compilation des fichiers PDF A4 professionnels</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ECRAN DES RESULTATS -->
+            <div id="custom-results-container" style="display: none;">
+                <div class="tab-buttons" style="margin-bottom: 1.5rem;">
+                    <button class="tab-btn active" id="custom-btn-cv" onclick="switchCustomTab(event, 'custom-tab-cv')">📄 CV Sur-Mesure</button>
+                    <button class="tab-btn" id="custom-btn-lm" onclick="switchCustomTab(event, 'custom-tab-lm')">✉️ Lettre de Motivation</button>
+                    <button class="tab-btn" id="custom-btn-downloads" onclick="switchCustomTab(event, 'custom-tab-downloads')">📥 Centre de Téléchargement</button>
+                </div>
+                
+                <div id="custom-tab-cv" class="tab-content active" style="max-height: 450px; background: rgba(0,0,0,0.15); padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--border); overflow-y: auto;"></div>
+                <div id="custom-tab-lm" class="tab-content" style="max-height: 450px; background: rgba(0,0,0,0.15); padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--border); overflow-y: auto;"></div>
+                
+                <div id="custom-tab-downloads" class="tab-content">
+                    <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); color: var(--accent); border-radius: 0.75rem; padding: 1rem; margin-bottom: 1.5rem; font-size: 0.9rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <strong>Fichiers générés avec succès !</strong> Les documents ont été compilés dans le dossier <code>output/</code> de l'application et sont prêts pour vos candidatures.
+                    </div>
+                    
+                    <div class="download-grid">
+                        <a id="download-cv-pdf" class="download-card" href="#" target="_blank">
+                            <div class="download-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            </div>
+                            <div class="download-title">CV Personnalisé PDF</div>
+                            <div class="download-subtitle">Format A4 Prêt à envoyer</div>
+                        </a>
+                        
+                        <a id="download-lm-pdf" class="download-card" href="#" target="_blank">
+                            <div class="download-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            </div>
+                            <div class="download-title">Lettre Motivation PDF</div>
+                            <div class="download-subtitle">En-tête HTML & Format A4</div>
+                        </a>
+
+                        <a id="download-cv-md" class="download-card" href="#" target="_blank">
+                            <div class="download-icon" style="background: rgba(168, 85, 247, 0.1); color: #a855f7;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            </div>
+                            <div class="download-title">CV en Markdown</div>
+                            <div class="download-subtitle">Modifier ou copier le texte</div>
+                        </a>
+
+                        <a id="download-lm-md" class="download-card" href="#" target="_blank">
+                            <div class="download-icon" style="background: rgba(168, 85, 247, 0.1); color: #a855f7;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            </div>
+                            <div class="download-title">Lettre en Markdown</div>
+                            <div class="download-subtitle">Modifier ou copier le texte</div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">
+                        💡 Retrouvez cette candidature dans la liste principale de votre Dashboard !
+                    </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <button class="btn btn-outline" onclick="closeCustomTailorModal()">Fermer</button>
+                        <button class="btn btn-primary" onclick="resetCustomForm()">💡 Personnaliser une autre offre</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        let allJobs = [];
+
+        async function loadJobs() {
+            try {
+                const response = await fetch('/api/jobs');
+                allJobs = await response.json();
+                populateFilters(allJobs);
+                renderJobs(allJobs);
+                updateStats(allJobs);
+            } catch (error) {
+                console.error("Erreur lors du chargement:", error);
+                document.getElementById('job-grid').innerHTML = `<div style="color: var(--danger); text-align:center;">Erreur de connexion au serveur.</div>`;
+            }
+        }
+
+        function populateFilters(jobs) {
+            const companies = [...new Set(jobs.map(j => j['Company Name']).filter(Boolean))].sort();
+            const cities = [...new Set(jobs.map(j => j['Location']).filter(Boolean))].sort();
+            const sources = [...new Set(jobs.map(j => j['Source']).filter(Boolean))].sort();
+            
+            const companySelect = document.getElementById('filter-company');
+            const citySelect = document.getElementById('filter-city');
+            const sourceSelect = document.getElementById('filter-source');
+            
+            const currentCompany = companySelect.value;
+            const currentCity = citySelect.value;
+            const currentSource = sourceSelect.value;
+            
+            companySelect.innerHTML = '<option value="all">🏢 Toutes les entreprises</option>' + 
+                companies.map(c => `<option value="${c}">${c}</option>`).join('');
+                
+            citySelect.innerHTML = '<option value="all">📍 Toutes les villes</option>' + 
+                cities.map(c => `<option value="${c}">${c}</option>`).join('');
+
+            sourceSelect.innerHTML = '<option value="all">🌐 Toutes les sources</option>' + 
+                sources.map(s => `<option value="${s}">${s}</option>`).join('');
+                
+            if(companies.includes(currentCompany)) companySelect.value = currentCompany;
+            if(cities.includes(currentCity)) citySelect.value = currentCity;
+            if(sources.includes(currentSource)) sourceSelect.value = currentSource;
+        }
+
+        function normalizeStatus(status) {
+            const cleaned = (status || '').trim();
+            if (!cleaned) return 'New';
+            return cleaned.split(/\s*[—-]\s*/)[0].trim();
+        }
+
+        function getStatusBadgeClass(status) {
+            const normalized = normalizeStatus(status).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+            return `badge-${normalized || 'default'}`;
+        }
+
+        function updateStats(jobs) {
+            document.getElementById('stat-total').innerText = jobs.length;
+            document.getElementById('stat-new').innerText = jobs.filter(j => normalizeStatus(j['Application Status']) === 'New').length;
+            document.getElementById('stat-ready').innerText = jobs.filter(j => normalizeStatus(j['Application Status']) === 'Documents Ready' || j['CV Tailored'] === 'Yes').length;
+            document.getElementById('stat-applied').innerText = jobs.filter(j => normalizeStatus(j['Application Status']) === 'Applied').length;
+        }
+
+        function filterJobs() {
+            const roleQuery = document.getElementById('search-role').value.toLowerCase();
+            const company = document.getElementById('filter-company').value;
+            const city = document.getElementById('filter-city').value;
+            const source = document.getElementById('filter-source').value;
+            const status = document.getElementById('filter-status').value;
+            
+            const filtered = allJobs.filter(job => {
+                const matchesRole = job['Job Title'].toLowerCase().includes(roleQuery);
+                const matchesCompany = company === 'all' || job['Company Name'] === company;
+                const matchesCity = city === 'all' || job['Location'] === city;
+                const matchesSource = source === 'all' || job['Source'] === source;
+                const matchesStatus = status === 'all' || normalizeStatus(job['Application Status']) === status;
+                
+                return matchesRole && matchesCompany && matchesCity && matchesSource && matchesStatus;
+            });
+            
+            renderJobs(filtered);
+        }
+
+        function renderJobs(jobs) {
+            const grid = document.getElementById('job-grid');
+            if (jobs.length === 0) {
+                grid.innerHTML = `<div style="text-align: center; padding: 4rem; color: var(--text-muted);">Aucune offre trouvée.</div>`;
+                return;
+            }
+
+            grid.innerHTML = jobs.map(job => {
+                const normalizedStatus = normalizeStatus(job['Application Status']);
+                const statusClass = getStatusBadgeClass(normalizedStatus);
+                return `
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">${job['Job Title']}</div>
+                                <div class="company-name">${job['Company Name']}</div>
+                            </div>
+                            <span class="badge ${statusClass}">${normalizedStatus}</span>
+                        </div>
+                        
+                        <div class="job-details">
+                            <span>📍 ${job['Location']}</span>
+                            <span>🏢 ${job['Source']}</span>
+                            <span>📅 ${job['Date Scraped'].split(' ')[0]}</span>
+                            ${job['Experience Required'] !== 'N/A' ? `<span>💼 ${job['Experience Required']}</span>` : ''}
+                        </div>
+
+                        <div class="job-description">
+                            ${job['Job Description'] || 'Pas de description disponible.'}
+                        </div>
+
+                        <div>
+                            <label style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">NOTES & COMMENTAIRES</label>
+                            <textarea class="notes-area" onchange="updateJob('${job['Job URL']}', {notes: this.value})" placeholder="Ajouter une note...">${job['Notes'] || ''}</textarea>
+                        </div>
+
+                        <div class="actions">
+                            <a href="${job['Job URL']}" target="_blank" class="btn btn-outline" style="padding: 0.4rem 0.8rem;">
+                                ↗
+                            </a>
+                            
+                            <button class="btn btn-outline" onclick="openJobDetails('${job['Job URL']}')">
+                                Détails & Docs
+                            </button>
+                            
+                            <select class="btn btn-outline" onchange="updateJob('${job['Job URL']}', {status: this.value})">
+                                <option value="New" ${normalizeStatus(job['Application Status']) === 'New' ? 'selected' : ''}>Marquer: Nouveau</option>
+                                <option value="Documents Ready" ${normalizeStatus(job['Application Status']) === 'Documents Ready' ? 'selected' : ''}>Marquer: Docs prêts</option>
+                                <option value="Applied" ${normalizeStatus(job['Application Status']) === 'Applied' ? 'selected' : ''}>Marquer: Postulé</option>
+                                <option value="Interview" ${normalizeStatus(job['Application Status']) === 'Interview' ? 'selected' : ''}>Marquer: Entretien</option>
+                                <option value="Rejected" ${normalizeStatus(job['Application Status']) === 'Rejected' ? 'selected' : ''}>Marquer: Refusé</option>
+                            </select>
+
+                            <button class="btn btn-primary" onclick="generateAndApply(event, '${job['Job URL']}')">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                Générer CV & Postuler
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        let logEventSource = null;
+
+        function startLogStream() {
+            const terminalWindow = document.getElementById('terminal-window');
+            const terminalOutput = document.getElementById('terminal-output');
+            terminalWindow.style.display = 'block';
+            
+            if (logEventSource) {
+                logEventSource.close();
+            }
+            
+            logEventSource = new EventSource('/api/logs');
+            logEventSource.onmessage = function(event) {
+                terminalOutput.innerHTML += event.data + '\n';
+                terminalWindow.scrollTop = terminalWindow.scrollHeight;
+            };
+        }
+
+        async function runScraper() {
+            const btn = document.getElementById('run-btn');
+            const stopBtn = document.getElementById('stop-btn');
+            
+            if (!confirm("Voulez-vous lancer la recherche d'offres ?")) return;
+            
+            try {
+                btn.style.display = 'none';
+                stopBtn.style.display = 'inline-flex';
+                
+                document.getElementById('terminal-output').innerHTML = '';
+                startLogStream();
+                
+                const response = await fetch('/api/run-scraper', { method: 'POST' });
+                const result = await response.json();
+                
+                if (!response.ok) {
+                    alert("❌ Erreur lors du lancement : " + result.detail);
+                    btn.style.display = 'inline-flex';
+                    stopBtn.style.display = 'none';
+                }
+            } catch (error) {
+                alert("❌ Erreur de connexion au serveur.");
+                btn.style.display = 'inline-flex';
+                stopBtn.style.display = 'none';
+            }
+        }
+
+        async function stopScraper() {
+            const stopBtn = document.getElementById('stop-btn');
+            const runBtn = document.getElementById('run-btn');
+            
+            try {
+                stopBtn.innerHTML = `<span class="spinner" style="border-top-color: var(--danger);"></span> Arrêt...`;
+                const response = await fetch('/api/stop-scraper', { method: 'POST' });
+                if (response.ok) {
+                    stopBtn.style.display = 'none';
+                    runBtn.style.display = 'inline-flex';
+                    stopBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg> Arrêter le Scraper`;
+                    setTimeout(loadJobs, 1000);
+                }
+            } catch (error) {
+                console.error("Erreur lors de l'arrêt:", error);
+            }
+        }
+
+        async function generateAndApply(event, url) {
+            const btn = event.currentTarget;
+            const originalHtml = btn.innerHTML;
+            
+            btn.innerHTML = `<span class="spinner"></span> En cours...`;
+            btn.disabled = true;
+            btn.style.opacity = "0.7";
+            
+            startLogStream();
+            
+            try {
+                const response = await fetch('/api/generate-preview', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ job_url: url })
+                });
+                
+                const result = await response.json();
+                if(response.ok) {
+                    loadJobs();
+                } else {
+                    alert("❌ Erreur: " + result.detail);
+                }
+            } catch (e) {
+                alert("❌ Erreur réseau");
+            } finally {
+                btn.innerHTML = originalHtml;
+                btn.disabled = false;
+                btn.style.opacity = "1";
+            }
+        }
+
+        function switchTab(e, tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            e.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        async function openJobDetails(url) {
+            const job = allJobs.find(j => j['Job URL'] === url);
+            if(!job) return;
+            
+            document.getElementById('modal-title').innerText = job['Job Title'];
+            document.getElementById('modal-subtitle').innerText = `${job['Company Name']} - ${job['Location']}`;
+            
+            const emails = job['Hiring Manager Email'] || "Non détecté pour le moment";
+            document.getElementById('modal-email-text').innerText = emails;
+            
+            // Description formatée
+            document.getElementById('tab-desc').innerHTML = marked.parse(job['Job Description'] || '*Pas de description détaillée disponible.*');
+            
+            document.getElementById('tab-cv').innerHTML = '<span class="spinner" style="border-top-color: var(--primary);"></span> Chargement...';
+            document.getElementById('tab-lm').innerHTML = '<span class="spinner" style="border-top-color: var(--primary);"></span> Chargement...';
+            
+            document.getElementById('job-modal').style.display = 'flex';
+            
+            // Lier le bouton
+            const applyBtn = document.getElementById('modal-apply-btn');
+            applyBtn.onclick = (e) => {
+                document.getElementById('job-modal').style.display = 'none';
+                generateAndApply(e, url);
+            };
+            
+            try {
+                const params = new URLSearchParams();
+                if (job['Job ID']) params.set('job_id', job['Job ID']);
+                params.set('company', job['Company Name']);
+                const response = await fetch(`/api/job-details?${params.toString()}`);
+                const docs = await response.json();
+                document.getElementById('tab-cv').innerHTML = marked.parse(docs.cv);
+                document.getElementById('tab-lm').innerHTML = marked.parse(docs.lm);
+            } catch (e) {
+                document.getElementById('tab-cv').innerHTML = '<span style="color:red">Erreur de chargement.</span>';
+                document.getElementById('tab-lm').innerHTML = '<span style="color:red">Erreur de chargement.</span>';
+            }
+        }
+
+        async function updateJob(url, data) {
+            try {
+                const response = await fetch('/api/update', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ job_url: url, ...data })
+                });
+                if (response.ok) {
+                    console.log("Mise à jour réussie");
+                    // Optionnel: Recharger les stats localement sans tout re-renderer
+                    const job = allJobs.find(j => j['Job URL'] === url);
+                    if (job) {
+                        if (data.status) job['Application Status'] = data.status;
+                        if (data.notes !== undefined) job['Notes'] = data.notes;
+                        updateStats(allJobs);
+                    }
+                }
+            } catch (error) {
+                console.error("Erreur lors de la mise à jour:", error);
+            }
+        }
+
+        // --- Custom Tailoring JS Features ---
+        let loadingInterval = null;
+
+        function startLoadingSimulation() {
+            const steps = [
+                { id: 'step-1', text: "Analyse sémantique de la description de l'offre..." },
+                { id: 'step-2', text: "Recherche des correspondances dans le profil candidat..." },
+                { id: 'step-3', text: "Adaptation stratégique du CV (Optimisation ATS)..." },
+                { id: 'step-4', text: "Rédaction d'une lettre de motivation hyper-ciblée..." },
+                { id: 'step-5', text: "Compilation des fichiers PDF A4 professionnels..." }
+            ];
+            
+            // Reset steps
+            steps.forEach(step => {
+                const el = document.getElementById(step.id);
+                if (el) el.className = 'loading-step';
+            });
+            
+            let currentStepIdx = 0;
+            
+            // Activate first step
+            const firstStepEl = document.getElementById(steps[0].id);
+            if (firstStepEl) firstStepEl.className = 'loading-step active';
+            document.getElementById('loading-main-text').innerText = steps[0].text;
+            
+            loadingInterval = setInterval(() => {
+                if (currentStepIdx < steps.length - 1) {
+                    // Complete current
+                    const currEl = document.getElementById(steps[currentStepIdx].id);
+                    if (currEl) currEl.className = 'loading-step completed';
+                    
+                    // Advance to next
+                    currentStepIdx++;
+                    const nextEl = document.getElementById(steps[currentStepIdx].id);
+                    if (nextEl) nextEl.className = 'loading-step active';
+                    document.getElementById('loading-main-text').innerText = steps[currentStepIdx].text;
+                }
+            }, 3000);
+        }
+
+        function stopLoadingSimulation() {
+            if (loadingInterval) {
+                clearInterval(loadingInterval);
+                loadingInterval = null;
+            }
+        }
+
+        function openCustomTailorModal() {
+            document.getElementById('custom-tailor-modal').style.display = 'flex';
+            resetCustomForm();
+        }
+
+        function closeCustomTailorModal() {
+            document.getElementById('custom-tailor-modal').style.display = 'none';
+            stopLoadingSimulation();
+        }
+
+        function resetCustomForm() {
+            // Reset input values
+            document.getElementById('custom-job-title').value = '';
+            document.getElementById('custom-company-name').value = '';
+            document.getElementById('custom-job-description').value = '';
+            
+            // Show form, hide others
+            document.getElementById('custom-form-container').style.display = 'block';
+            document.getElementById('custom-loading-container').style.display = 'none';
+            document.getElementById('custom-results-container').style.display = 'none';
+            
+            // Reset tabs
+            document.querySelectorAll('#custom-results-container .tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('#custom-results-container .tab-content').forEach(content => content.classList.remove('active'));
+            
+            document.getElementById('custom-btn-cv').classList.add('active');
+            document.getElementById('custom-tab-cv').classList.add('active');
+        }
+
+        function switchCustomTab(e, tabId) {
+            document.querySelectorAll('#custom-results-container .tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('#custom-results-container .tab-content').forEach(content => content.classList.remove('active'));
+            
+            e.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        async function submitCustomTailor() {
+            const title = document.getElementById('custom-job-title').value.trim();
+            const company = document.getElementById('custom-company-name').value.trim();
+            const desc = document.getElementById('custom-job-description').value.trim();
+            
+            if (!title || !company || !desc) {
+                alert("⚠️ Veuillez remplir tous les champs obligatoires (Intitulé, Entreprise, Description).");
+                return;
+            }
+            
+            // Toggle view to loading
+            document.getElementById('custom-form-container').style.display = 'none';
+            document.getElementById('custom-loading-container').style.display = 'block';
+            
+            startLoadingSimulation();
+            
+            try {
+                const response = await fetch('/api/tailor-custom', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        job_title: title,
+                        company_name: company,
+                        job_description: desc
+                    })
+                });
+                
+                const result = await response.json();
+                
+                stopLoadingSimulation();
+                
+                if (response.ok) {
+                    // Complete all steps in UI
+                    document.querySelectorAll('#custom-loading-container .loading-step').forEach(el => {
+                        el.className = 'loading-step completed';
+                    });
+                    document.getElementById('loading-main-text').innerText = "Génération terminée !";
+                    
+                    // Delay slightly to let the user see completion
+                    setTimeout(() => {
+                        // Render tabs
+                        document.getElementById('custom-tab-cv').innerHTML = marked.parse(result.cv_md);
+                        document.getElementById('custom-tab-lm').innerHTML = marked.parse(result.lm_md);
+                        
+                        // Set download links
+                        document.getElementById('download-cv-pdf').href = `/api/download/${result.cv_pdf_file}`;
+                        document.getElementById('download-lm-pdf').href = `/api/download/${result.lm_pdf_file}`;
+                        document.getElementById('download-cv-md').href = `/api/download/${result.cv_md_file}`;
+                        document.getElementById('download-lm-md').href = `/api/download/${result.lm_md_file}`;
+                        
+                        // Show results
+                        document.getElementById('custom-loading-container').style.display = 'none';
+                        document.getElementById('custom-results-container').style.display = 'block';
+                        
+                        // Reload dashboard jobs list so the new manual application appears
+                        loadJobs();
+                    }, 800);
+                    
+                } else {
+                    alert("❌ Erreur de génération : " + result.detail);
+                    resetCustomForm();
+                }
+            } catch (error) {
+                stopLoadingSimulation();
+                alert("❌ Erreur réseau lors de la communication avec le serveur.");
+                resetCustomForm();
+            }
+        }
+
+        // Initial load
+        window.onload = loadJobs;
+    </script>
+</body>
+</html>

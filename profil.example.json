@@ -1,0 +1,1032 @@
+{
+  "identity": {
+    "full_name": "Jane Doe",
+    "professional_title": "Software Engineer | AI & Data Solutions",
+    "headline": "Software Engineer focused on AI, analytics, and reliable backend systems",
+    "location": "Paris, France",
+    "email": "jane.doe@example.com",
+    "email_personnel": "jane.doe@example.com",
+    "phone": "+33123456789",
+    "links": {
+      "github": "https://github.com/example-user",
+      "linkedin": "https://linkedin.com/in/example-user",
+      "portfolio": "https://example.com/portfolio"
+    },
+    "availability": {
+      "status": "Available",
+      "type": "Open to opportunities",
+      "start_date": "Q3 2026"
+    }
+  },
+  "career_strategy": {
+    "target_roles": [
+      "Software Engineer",
+      "Software Developer",
+      "Backend Engineer",
+      "Java Developer",
+      "Java Spring Boot Developer",
+      "Java J2EE Developer",
+      "Python Developer",
+      "Full-Stack Developer",
+      "Frontend Developer React",
+      "Frontend Developer Angular",
+      "Data Engineer",
+      "Junior Data Engineer",
+      "Analytics Engineer",
+      "AI Engineer",
+      "LLM Engineer",
+      "QA Engineer",
+      "Data Quality Analyst",
+      "IT Consultant",
+      "Technology Consultant",
+      "Digital Transformation Consultant",
+      "Business Analyst IT",
+      "Solutions Engineer",
+      "Cloud Engineer Junior",
+      "DevOps Engineer Junior"
+    ],
+    "preferred_industries": [
+      "Artificial Intelligence",
+      "Analytics Platforms",
+      "Technology Consulting",
+      "Enterprise SaaS",
+      "FinTech",
+      "Digital Transformation",
+      "Cloud Platforms",
+      "Data & BI Solutions",
+      "Industrial / Manufacturing Analytics",
+      "Retail Analytics",
+      "Public Sector IT"
+    ],
+    "positioning_by_role_family": {
+      "software_java": "Mettre en avant Java 21, J2EE, Spring Boot 3, Spring Security, Spring Cloud, Hibernate/JPA, SOAP/REST, Maven, Git, Docker, microservices, qualité du code, revues de code, SELECT FOR UPDATE, JWT.",
+      "software_fullstack": "Mettre en avant React/TypeScript, FastAPI, APIs, PostgreSQL, intégration frontend-backend et expérience produit end-to-end.",
+      "data_analytics": "Mettre en avant Data Preparation Agent, data profiling, quality scoring, Pandas, DuckDB, MinIO Bronze/Silver/Gold, dashboards et KPIs.",
+      "ai_agents": "Mettre en avant Insight Agent, agents sectoriels Retail/Manufacturing, LangGraph, MCP, Azure OpenAI, prompts structurés et Human-in-the-Loop.",
+      "qa_testing": "Mettre en avant validation API, Postman, Swagger/OpenAPI, data quality validation, scénarios end-to-end, validation utilisateur et contrôle des erreurs.",
+      "consulting": "Mettre en avant analyse de besoin, use-cases métier, KPI mapping sectoriel, documentation, communication avec utilisateurs métier et solution design."
+    }
+  },
+  "technical_ecosystem": {
+    "languages": [
+      "Python",
+      "Java 21",
+      "TypeScript",
+      "JavaScript",
+      "SQL",
+      "Kotlin",
+      "PHP",
+      "C/C++"
+    ],
+    "java_jee_ecosystem": {
+      "note": "Bloc dédié J2EE/Java EE pour la détection ATS — alias universels inclus",
+      "core": [
+        "Java",
+        "Java 21",
+        "J2EE",
+        "Java EE",
+        "Java/J2EE",
+        "Spring Boot",
+        "Spring Boot 3",
+        "Spring Framework",
+        "Spring Security",
+        "Spring Security 6",
+        "Spring Cloud",
+        "Spring Cloud Eureka",
+        "Spring Cloud Gateway",
+        "Spring Cloud Config",
+        "Spring MVC",
+        "Spring Data JPA",
+        "Hibernate",
+        "Hibernate/JPA",
+        "JPA",
+        "ORM",
+        "OpenFeign",
+        "RabbitMQ",
+        "Apache Kafka",
+        "Caffeine Cache",
+        "Redis"
+      ],
+      "api_patterns": [
+        "REST API",
+        "RESTful API",
+        "API REST",
+        "REST APIs",
+        "SOAP",
+        "Web Services SOAP",
+        "JAX-WS",
+        "JAX-RS",
+        "OpenAPI",
+        "Swagger",
+        "API Gateway"
+      ],
+      "quality_patterns": [
+        "JUnit",
+        "Mockito",
+        "Spring Boot Test",
+        "Postman",
+        "API Testing",
+        "AOP",
+        "Spring AOP",
+        "Micrometer",
+        "Spring Sleuth",
+        "Code Review",
+        "Revue de Code",
+        "Bonnes Pratiques",
+        "Tests Unitaires",
+        "Tests d'Intégration",
+        "Qualité du Code",
+        "Maintenabilité"
+      ],
+      "build_tools": [
+        "Maven",
+        "Apache Maven",
+        "Gradle",
+        "Git",
+        "GitHub",
+        "GitLab",
+        "Docker",
+        "Docker Compose",
+        "CI/CD",
+        "Jenkins",
+        "GitHub Actions",
+        "GitLab CI"
+      ],
+      "security": [
+        "JWT",
+        "OAuth2",
+        "Spring Security",
+        "RBAC",
+        "Keycloak",
+        "OIDC",
+        "Spring Security 6",
+        "SELECT FOR UPDATE"
+      ],
+      "databases_java": [
+        "PostgreSQL",
+        "MySQL",
+        "Oracle",
+        "SQL Server",
+        "H2",
+        "JSONB",
+        "Hibernate/JPA",
+        "JPA"
+      ]
+    },
+    "python_ecosystem": {
+      "frameworks": [
+        "FastAPI",
+        "Flask",
+        "Django"
+      ],
+      "data_science": [
+        "Pandas",
+        "NumPy",
+        "Matplotlib",
+        "Seaborn",
+        "scikit-learn",
+        "XGBoost",
+        "LightGBM",
+        "Jupyter Notebook",
+        "ipynb"
+      ],
+      "nlp": [
+        "spaCy",
+        "TextBlob",
+        "Gensim LDA",
+        "VADER"
+      ],
+      "ml_ops": [
+        "MLflow",
+        "joblib",
+        "RandomizedSearchCV"
+      ],
+      "data_tools": [
+        "DuckDB",
+        "Apache Airflow",
+        "dbt",
+        "YData Profiling"
+      ]
+    },
+    "ai_agent_ecosystem": {
+      "orchestration": [
+        "LangGraph",
+        "LangChain",
+        "MCP",
+        "Multi-Agent Systems"
+      ],
+      "llm_providers": [
+        "Azure OpenAI",
+        "OpenRouter",
+        "Ollama",
+        "Gemini"
+      ],
+      "patterns": [
+        "RAG",
+        "Human-in-the-Loop",
+        "HITL",
+        "NLQ",
+        "Prompt Engineering",
+        "Sector Agents",
+        "Insight Agent",
+        "Shared Config Registry"
+      ],
+      "models_used": [
+        "GPT-4o",
+        "GPT-4",
+        "Llama",
+        "Gemini 2.5 Flash"
+      ]
+    },
+    "frontend_engineering": {
+      "core": [
+        "React 18",
+        "TypeScript",
+        "JavaScript",
+        "Vite",
+        "Angular 20"
+      ],
+      "state_management": [
+        "Zustand",
+        "TanStack Query",
+        "React Hook Form"
+      ],
+      "ui_frameworks": [
+        "Tailwind CSS",
+        "Angular Material",
+        "shadcn/ui",
+        "Framer Motion"
+      ],
+      "visualization": [
+        "Recharts",
+        "Chart.js",
+        "Looker Studio"
+      ],
+      "other": [
+        "WebSockets",
+        "SockJS",
+        "STOMP"
+      ]
+    },
+    "data_storage": {
+      "relational": [
+        "PostgreSQL",
+        "MySQL",
+        "Oracle",
+        "SQLite",
+        "PostgreSQL JSONB"
+      ],
+      "nosql_cache": [
+        "Redis",
+        "MongoDB"
+      ],
+      "object_storage": [
+        "MinIO",
+        "MinIO S3-compatible"
+      ],
+      "architectures": [
+        "Bronze/Silver/Gold",
+        "Medallion Architecture",
+        "Star Schema",
+        "OLAP",
+        "Data Warehouse",
+        "Data Lake"
+      ]
+    },
+    "devops_infra": {
+      "containers": [
+        "Docker",
+        "Docker Compose",
+        "Kubernetes"
+      ],
+      "ci_cd": [
+        "GitHub Actions",
+        "GitLab CI",
+        "Jenkins",
+        "Maven",
+        "Gradle"
+      ],
+      "monitoring": [
+        "Micrometer",
+        "Spring Sleuth",
+        "MLflow tracking"
+      ],
+      "security": [
+        "Keycloak 23",
+        "OIDC",
+        "OAuth2",
+        "JWT",
+        "SSL/TLS"
+      ],
+      "cloud": [
+        "Azure",
+        "Azure OpenAI",
+        "AWS S3 (MinIO compatible)"
+      ]
+    },
+    "soft_skills_tech": [
+      "Architecture Design",
+      "Code Review",
+      "Technical Documentation",
+      "UML",
+      "PlantUML",
+      "BPMN",
+      "Agile",
+      "Scrum",
+      "Jira",
+      "Performance Optimization",
+      "Security Best Practices",
+      "Test-Driven Development",
+      "API Design",
+      "Microservices Design Patterns"
+    ]
+  },
+  "professional_experience": [
+    {
+      "id": "dxc",
+      "company": "DXC Technology",
+      "always_feature": true,
+      "company_type": "global_tech_consulting",
+      "role": "AI & Software Engineering Intern (PFE)",
+      "duration": "Fév 2026 — Juin 2026",
+      "location": "Rabat, Maroc",
+      "project_name": "Intelligent Analytics — Plateforme Multi-Agent d'Analytics IA",
+      "description": "Conception, développement et déploiement d'une plateforme d'entreprise (Enterprise SaaS) d'analytics décisionnels de bout en bout, structurée autour d'une architecture multi-agents IA et de workflows découplés. La plateforme permet aux décideurs métiers et managers d'interroger, nettoyer, visualiser et modéliser de larges volumes de données opérationnelles de façon 100% autonome, éliminant les latences d'attente liées aux requêtes BI traditionnelles et aux interventions des équipes Data Engineering. Le système prend en charge l'intégralité du cycle de vie analytique selon un pattern Medallion (Bronze/Silver/Gold) : ingestion brute de jeux de données complexes et profiling de structure, nettoyage collaboratif via des workflows Human-in-the-Loop (HITL), calcul automatique de scores de qualité sur 5 dimensions, génération automatique de tableaux de bord descriptifs déterministes (cartes de KPIs réels, graphiques interactifs et insights textuels sans hallucination), chat conversationnel basé sur la traduction de langage naturel en requêtes de code SQL (Natural Language Query) sécurisées, et lancements de workflows prédictifs de Machine Learning supervisés pilotés par des agents sectoriels spécialisés (Retail, Manufacturing) fournissant des recommandations décisionnelles concrètes et adaptées aux problématiques métiers.",
+      "business_context": "Au sein des grandes organisations, la valorisation des masses de données disponibles est compromise par une dépendance technique systématique : les décideurs métier ne maîtrisant pas SQL ou Python restent tributaires des data analysts pour chaque croisement de données ou création de rapports, générant des goulots d'étranglement relationnels et des retards dans l'exécution de stratégies opérationnelles. De plus, les solutions de BI traditionnelles produisent des rapports statiques peu réadaptables à la volée. Les données brutes d'entreprises sont fortement hétérogènes, hachées et compromises par des anomalies de qualité (valeurs nulles, aberrations statistiques, formats temporels disjoints), faussant les indicateurs clés. Enfin, le déploiement de modèles prédictifs reste complexe et hermétique, car les résultats statistiques bruts (scores d'erreur, matrices de confusion) ne se traduisent pas d'eux-mêmes en plans d'actions métiers compréhensibles. Intelligent Analytics répond à ces limites en intégrant une architecture multi-agent flexible qui comprend l'intention de l'utilisateur en langage naturel, orchestre dynamiquement des agents spécialisés (LangGraph StateGraph), prépare et nettoie les données de bout en bout de manière déterministe avec supervision humaine (HITL) assurant la transparence, et fournit des analyses prédictives enrichies d'explications sectorielles stratégiques.",
+      "stack": {
+        "backend": [
+          "FastAPI",
+          "Python",
+          "PostgreSQL",
+          "PostgreSQL JSONB",
+          "SQLAlchemy",
+          "Alembic",
+          "Redis",
+          "Pydantic"
+        ],
+        "ai_data": [
+          "LangGraph",
+          "Azure OpenAI",
+          "OpenRouter",
+          "Ollama",
+          "MLflow",
+          "MinIO",
+          "DuckDB",
+          "dbt",
+          "YData Profiling",
+          "Power BI",
+          "Medallion Architecture",
+          "Bronze/Silver",
+          "Human-in-the-Loop",
+          "HITL",
+          "NLQ",
+          "Prompt Engineering",
+          "Data Preparation Agent",
+          "Insight Agent",
+          "Retail Agent",
+          "Manufacturing Agent",
+          "Transport Agent",
+          "Predictive Data Validator",
+          "Generic Predictive Agent",
+          "Customer-Adapter-Agent",
+          "Memory Layer",
+          "Shared Config Registry",
+          "RAG",
+          "Scikit-learn",
+          "XGBoost",
+          "LightGBM",
+          "Pydantic"
+        ],
+        "frontend": [
+          "React 18",
+          "TypeScript",
+          "Vite",
+          "Zustand",
+          "TanStack Query",
+          "Recharts",
+          "Framer Motion",
+          "Tailwind CSS",
+          "shadcn/ui"
+        ],
+        "devops": [
+          "Docker",
+          "Docker Compose",
+          "Keycloak 23",
+          "OIDC",
+          "Git",
+          "Swagger",
+          "OpenAPI"
+        ]
+      },
+      "key_achievements": [
+        {
+          "titre": "Insight Agent — Analyse descriptive, dashboards configurables, Power BI et visualisations déterministes",
+          "valeur_metier": "Accélère la prise de décision opérationnelle en automatisant l'analyse exploratoire initiale à partir d'un fichier brut importé. Dès l'ingestion, le système configure automatiquement un tableau de bord complet décrivant l'activité, en déterminant les indicateurs clés (KPIs) cruciaux et les représentations graphiques optimales selon le secteur du dataset. Les agrégations sont exécutées de manière déterministe sur les données physiques réelles pour éliminer tout risque d'hallucination inhérent aux modèles génératifs, tout en conservant une interface interactive fluide.",
+          "ce_que_j_ai_construit": "Développement complet du service Insight Agent chargé du chargement de données, du routage des indicateurs et graphiques, et de la génération des configurations visuelles. J'ai configuré la structure de prompt Azure OpenAI pour analyser la sémantique de la table d'entrée (schema d'import brut, types détectés) et générer un format de configuration JSON structuré (validé via Pydantic) décrivant de manière déclarative le tableau de bord : cartes KPIs (aggregations de type SUM, AVERAGE, YOY, CAGR et DELTA), graphiques adaptés (temporels, segmentations de barres, répartitions) et résumés insights rédigés. J'ai construit le module d'intégration pour adapter les visualisations et exporter automatiquement les graphes vers des formats compatibles Power BI. J'ai écrit la couche backend de validation pour interdire les requêtes sur des colonnes inexistantes, et connecté DuckDB pour exécuter à chaud les requêtes physiques sur les tables Silver parquet hébergées dans MinIO. Côté Frontend, j'ai codé l'interpréteur dynamique React convertissant les schémas JSON d'insights en graphiques interactifs avec la bibliothèque Recharts associés à un store global Zustand pour stocker les configurations et mémoriser l'état d'affichage entre sessions.",
+          "tech_proof": "Azure OpenAI (GPT-4o), FastAPI, Pydantic, DuckDB, MinIO, Power BI formats, React 18, Zustand, Recharts, Framer Motion"
+        },
+        {
+          "titre": "Data Preparation Agent — Pipeline Medallion Bronze/Silver et scoring qualité de données (DAMA-DMBOK)",
+          "valeur_metier": "Résout les problèmes structurels de mauvaise qualité de données (données manquantes, valeurs aberrantes, erreurs de saisie) qui faussent habituellement les analyses décisionnelles d'entreprise. La plateforme permet une préparation des données transparente et interactive, dans laquelle l'utilisateur métier comprend les anomalies détectées et valide personnellement le plan d'assainissement étape par étape, garantissant ainsi l'intégrité absolue sans complexité technique.",
+          "ce_que_j_ai_construit": "Conception et programmation du Data Preparation Agent en charge de la qualité des données (ingestion brute, nettoyage et validation de la qualité). J'ai codé le graph LangGraph responsable du pipeline d'ingestion. Les fichiers bruts sont stockés dans le bucket Bronze de MinIO. Le traitement calcule un profiling initial (intégration de YData Profiling) et un score qualité (0 à 100) basé sur 5 dimensions majeures de la gouvernance DAMA-DMBOK : complétude, validité, exactitude, unicité et cohérence logicielle. J'ai configuré des règles d'évaluation via dbt pour extraire automatiquement 7 types d'anomalies (valeurs nulles, outliers statistiques isolés, doublons d'index, non-conformité de formats regex) et dresser un plan de correction interactif composé de 9 filtres de remédiation (imputation par médiane historique, interpolation linéaire, filtres d'exclusion, ou flags). J'ai structuré l'interruption Human-in-the-Loop de LangGraph en sauvegardant l'état dans PostgreSQL pour suspendre l'exécution en attente de la confirmation utilisateur. Après validation du plan de nettoyage par l'utilisateur, DuckDB exécute les transformations physiques et publie le dataset nettoyé dans le bucket Silver de MinIO pour alimenter en toute confiance les phases prédictives.",
+          "tech_proof": "LangGraph (HITL checkpoints), dbt, YData Profiling, MinIO S3 API, DuckDB, Python, PostgreSQL, React 18 / Tailwind"
+        },
+        {
+          "titre": "NLQ Context Agent & Memory Layer — Exploration de données en langage naturel et génération SQL avec adresse AST",
+          "valeur_metier": "Offre aux décideurs opérationnels un canal direct d'exploration d'information en langage naturel réagissant instantanément aux questions complexes. La plateforme traduit les interrogations en instructions d'interrogation physiques, applique des protections en temps réel contre les accès hostiles et permet à l'utilisateur de sauvegarder à la volée les indicateurs ou graphiques créés directement dans son espace projet persistant.",
+          "ce_que_j_ai_construit": "Conception globale de l'interface de requêtage en langage naturel et des couches NLQ Layer et Memory Layer. J'ai structuré la chaîne de prompt du NLQ Agent en l'alimentant avec le schéma détaillé de la table DuckDB active, les dictionnaires de colonnes et des règles d'associations de KPIs. Pour bloquer toute attaque d'injection SQL ou exécution malveillante, j'ai développé un validateur sémantique côté Backend FastAPI qui parse l'arbre de syntaxe abstraite (AST) de la requête SQL générée par le modèle (via sqlglot) pour interdire strictement tout mot-clé non-SELECT (tel que DROP, DELETE, ALTER, UPDATE, INSERT). Le moteur exécute les requêtes sur DuckDB et mappe dynamiquement le format tabulaire produit vers des schémas Recharts en recommandant les visualisations optimales. Pour gérer la contextualisation conversationnelle, j'ai implémenté la couche sémantique de mémoire (Memory Layer) composée d'une mémoire de conversation de session active (Redis), d'un cache de contexte étendu et de la persistance de l'historique d'analyses analytiques de l'utilisateur stocké dans PostgreSQL.",
+          "tech_proof": "FastAPI, SQL AST parser (sqlglot / re), DuckDB, Azure OpenAI (GPT-4o), Redis session cache, PostgreSQL JSONB, Memory Layer, React 18, Recharts"
+        },
+        {
+          "titre": "Workflows prédictifs de modélisation ML, validation de données (PDV) en 7 étapes et agents sectoriels",
+          "valeur_metier": "Démocratise la science des données prédictive en évitant d'exposer les utilisateurs métiers à des bibliothèques algorithmiques complexes ou à des hyperparamètres abstraits. Les opérationnels peuvent configurer des scénarios de rétention de clientèle (Churn) ou de maintenance préventive d'équipements industriels, et reçoivent des justifications conceptuelles compréhensibles exprimées dans les termes décisionnels propres à leur domaine d'activité (pertes financières, volumes de stocks, heures de fonctionnement machine).",
+          "ce_que_j_ai_construit": "Intégration du pipeline constructeur de modèles ML piloté par l'Orchestrateur LangGraph. Pour la validation de données pré-ML, j'ai interfacé le Predictive Data Validator (PDV) chargé d'exécuter un pipeline rigide de validation en 7 étapes : 1. Data Size Check, 2. Target Verification, 3. Quality Thresholds (missing values), 4. Feature Engineering (+ validation utilisateur), 5. Feature Selection (corr. + variance), 6. ML Task Detection, et 7. Launch Confirmation / Scheduling. J'ai implémenté le Training Agent qui récupère les configurations ML ciblées via le Shared Config Registry, entraîne en parallèle (joblib) des architectures supervisées (scikit-learn, XGBoost, LightGBM) en gérant automatiquement le déséquilibre des classes, et logs l'intégralité des runs, des hyperparamètres et des artefacts (.pkl) sur MLflow pour classement automatique et sélection du meilleur modèle. J'ai connecté les agents spécialisés : Retail Agent (gérant 16 cas d'usages dont le churn, la segmentation RFM et l'optimisation des stocks de sécurité), Transport Agent (gérant les anomalies et retards logistiques) et Generic Predictive (chargé de la sélection générique et génération de scripts fallback) pour transformer la feature importance en explications narratives métiers concrètes.",
+          "tech_proof": "LangGraph StateGraph, Predictive Data Validator (7-step logic), Training Agent, MLflow, Shared Config Registry, Retail/Transport Agents, XGBoost/LightGBM, pytest (29 tests unitaires)"
+        },
+        {
+          "titre": "Intégration logicielle globale, fédération d'identités Keycloak SSO, Customer-Adapter et orchestration",
+          "valeur_metier": "Assure la maintenabilité, la scalabilité et le cloisonnement sécurisé de la plateforme décisionnelle multi-utilisateurs. L'implémentation de normes d'authentification robuste (SSO) certifie la stricte confidentialité des données projets d'entreprise, tandis que le découplage asynchrone des services garantit la disponibilité et la fluidité UX en évitant la perte d'informations lors du traitement de gros volumes de fichiers.",
+          "ce_que_j_ai_construit": "J'ai agi en tant que Product Engineer sur la stack globale d'Intelligent Analytics. J'ai conçu la structure Frontend React 18 modélisant les 4 phases utilisateurs (use case onboarding, descriptive analytics, NLQ interactive chat et ML predictive workflow) avec sauvegarde d'état persistant dans Zustand et requêtage centralisé TanStack Query. Pour adapter l'application à chaque profil, j'ai implémenté le Customer-Adapter-Agent qui gère la collecte du comportement utilisateur, génère des profils de compétences statistiques métiers et adapte dynamiquement le niveau d'interaction de l'interface en conséquence. J'ai développé l'API Gateway FastAPI, la persistance relationnelle sous PostgreSQL via SQLAlchemy et Alembic, et le proxy NLQ qui gère la communication asynchrone avec l'Orchestrateur LangGraph. J'ai configuré et sécurisé l'écosystème avec un fournisseur d'identité Keycloak 23 s'appuyant sur OIDC (OpenID Connect) pour proposer une expérience de Single Sign-On (SSO) unifiée et restreindre l'accès logique aux seuls projets associés au rôle de l'utilisateur (RBAC). Enfin, j'ai assemblé les conteneurs sous Docker Compose pour en garantir la portabilité globale.",
+          "tech_proof": "React 18, TypeScript, Zustand, TanStack Query, Customer-Adapter-Agent, FastAPI, Keycloak 23 (OIDC SSO), PostgreSQL, SQLAlchemy, Alembic, Docker, Docker Compose, OpenAPI/Swagger"
+        }
+      ],
+      "architecture_highlights": [
+        "La plateforme Intelligent Analytics est découpée en 6 composants autonomes interconnectés de manière asynchrone et découplée pour garantir la robustesse globale : 1/ SPA Frontend développée avec React 18, TypeScript et Vite servant d'interface unique intelligente pour les workflows descriptifs, sémantiques et prédictifs, s'appuyant sur Zustand pour le stockage persistant globaux de session et TanStack Query pour le cache et la synchronisation avec le serveur. 2/ API REST Backend sous FastAPI développée en Python assurant la logique métier centrale, la persistance relationnelle au sein de PostgreSQL via SQLAlchemy/Alembic, et la gestion sécurisée des transactions. 3/ Service d'identité Keycloak 23 SSO assurant le Single Sign-On, l'authentification et l'autorisation basée sur les rôles (RBAC) pour isoler les espaces de travail utilisateurs. 4/ Data Preparation Agent chargé de l'ingestion brute (Bronze MinIO), du profiling statistique via YData, du calcul de score de qualité à 5 dimensions (DAMA-DMBOK) et de la correction interactive HITL (Human-in-the-Loop) avec checkpoints de statut générant la table nettoyée (Silver). 5/ Insight Agent orchestrant le moteur SQL sémantique pour traduire le langage naturel en requêtes déterministes sur DuckDB avec exécution en mémoire sous garde-fou d'un analyseur d'AST prévenant les injections de requêtes, suivi d'une génération automatique de configuration visuelle Recharts. 6/ Agents Sectoriels (Retail Agent & Manufacturing Agent) encapsulés et intégrés via un orchestrateur central LangGraph StateGraph, interfaçant le Training Agent de Machine Learning supervisé (scikit-learn, XGBoost, LightGBM) suivi par MLflow pour la traçabilité des exécutions, et traduisant les variables d'importance et prédictions en recommandations stratégiques."
+      ],
+      "role_signal": [
+        "ai_engineer",
+        "software_engineer",
+        "data_engineer",
+        "frontend_fullstack_ai_product"
+      ]
+    },
+    {
+      "id": "lotus_capital",
+      "company": "Lotus Capital (CAPQUANT)",
+      "always_feature": true,
+      "company_type": "fintech_trading",
+      "role": "Java Backend Engineering Intern",
+      "duration": "Oct 2025 — Jan 2026",
+      "location": "Rabat, Maroc",
+      "project_name": "Plateforme de trading distribuée CQOS",
+      "description": "Développement de microservices Java/J2EE Spring Boot 3 pour la plateforme de trading CQOS : système d'identité, abonnements (FREE/PRO/ELITE), CRM 360° et sécurisation des opérations financières critiques.",
+      "business_context": "Lotus Capital opère une plateforme de trading où chaque milliseconde compte et chaque dépassement de quota peut coûter cher. Les équipes commerciales jonglaient entre plusieurs outils pour avoir une vue client complète, la validation des tokens ralentissait les transactions, et les quotas d'usage n'étaient pas protégés contre les accès concurrents — risque de dépassement en production.",
+      "key_achievements": [
+        {
+          "context": "Les équipes commerciales consultaient plusieurs systèmes séparés pour avoir le profil complet d'un client — perte de temps et risque d'incohérence entre les données.",
+          "action": "Développé un CRM unifié regroupant en une seule requête toutes les informations client : identité, abonnement actif, historique de paiement et activité",
+          "result": "Toutes les équipes accèdent au profil complet d'un client en une requête — plus de jonglage entre outils, vision 360° instantanée",
+          "tech_proof": "Spring Boot 3, OpenFeign, Spring Cloud"
+        },
+        {
+          "context": "Sur une plateforme de trading, valider chaque token d'authentification à chaque requête introduisait une latence visible — inacceptable sous charge.",
+          "action": "Implémenté un double système de cache pour la validation des tokens : cache local ultra-rapide pour la même instance, cache distribué pour la cohérence entre serveurs",
+          "result": "Latence de validation des tokens réduite à moins de 20ms au 95e percentile même sous charge — expérience fluide pour les traders",
+          "tech_proof": "Spring Security 6, Caffeine Cache local, Redis distribué"
+        },
+        {
+          "context": "Les quotas d'utilisation par abonnement (FREE/PRO/ELITE) n'étaient pas protégés contre les accès simultanés — un bug de concurrence pouvait laisser des utilisateurs dépasser leur limite sans payer.",
+          "action": "Sécurisé les vérifications de quota avec des verrous au niveau base de données et des remises à zéro automatiques programmées",
+          "result": "Zéro dépassement de quota en production même sous accès concurrent élevé — les règles d'abonnement sont respectées à la milliseconde",
+          "tech_proof": "PostgreSQL SELECT FOR UPDATE, Spring @Scheduled, AOP"
+        },
+        {
+          "context": "Les utilisateurs voulaient se connecter via leurs comptes existants (Google, GitHub, LinkedIn) plutôt que de créer un nouveau compte — friction à l'inscription.",
+          "action": "Intégré la connexion via quatre providers externes avec liaison sécurisée des comptes et notifications automatiques au support",
+          "result": "Les utilisateurs s'inscrivent en un clic depuis leur compte existant — taux de conversion amélioré et support notifié automatiquement des nouveaux inscrits",
+          "tech_proof": "OAuth2 multi-provider, Spring Security, RabbitMQ notifications"
+        },
+        {
+          "context": "Les opérations sensibles (connexions, changements d'abonnement, accès critiques) n'étaient pas tracées — impossible d'auditer ou de détecter des comportements anormaux.",
+          "action": "Mis en place une observabilité complète traçant automatiquement toutes les opérations sensibles sans modifier le code métier",
+          "result": "Traçabilité totale des actions critiques consultable à tout moment — la plateforme est auditable et les anomalies détectables",
+          "tech_proof": "Micrometer, Spring Sleuth, AOP logging"
+        }
+      ],
+      "stack": [
+        "Java",
+        "Java 21",
+        "J2EE",
+        "Java EE",
+        "Spring Boot",
+        "Spring Boot 3",
+        "Spring Framework",
+        "Spring Security",
+        "Spring Security 6",
+        "Spring Cloud",
+        "Spring Cloud Eureka",
+        "Spring Cloud Gateway",
+        "Spring Cloud Config",
+        "OpenFeign",
+        "JWT",
+        "OAuth2",
+        "Caffeine Cache",
+        "Redis",
+        "PostgreSQL",
+        "SELECT FOR UPDATE",
+        "RabbitMQ",
+        "AOP",
+        "Spring AOP",
+        "Micrometer",
+        "Spring Sleuth",
+        "Docker",
+        "Docker Compose",
+        "Maven",
+        "Swagger",
+        "Postman",
+        "REST API",
+        "RESTful API",
+        "RBAC",
+        "Spring Security"
+      ],
+      "architecture_highlights": [
+        "2 microservices Spring Boot 3 : Admin/CRM Service (fiche 360° via OpenFeign) et User Management/Subscription Service (JWT <20ms P95, double cache Caffeine+Redis, OAuth2 multi-provider, quotas atomiques SELECT FOR UPDATE, RBAC granulaire, workers @Scheduled, observabilité Micrometer/Sleuth)"
+      ],
+      "role_signal": [
+        "software_engineer"
+      ]
+    },
+    {
+      "id": "micepp",
+      "company": "Ministère de l'Investissement (MICEPP)",
+      "always_feature": true,
+      "company_type": "public_sector",
+      "role": "Full-Stack Engineering Intern",
+      "duration": "Juil 2025 — Sep 2025",
+      "location": "Rabat, Maroc",
+      "project_name": "Portail AOS MICEPP — Prestations sociales fonctionnaires",
+      "description": "Développement d'un portail web full-stack permettant aux fonctionnaires de déposer leurs dossiers de prestations sociales en ligne et de suivre leur avancement en temps réel, avec back-office administrateur et notifications automatiques.",
+      "business_context": "Les fonctionnaires du Ministère devaient se déplacer physiquement ou appeler pour déposer un dossier de prestation sociale et connaître son avancement. Le traitement était manuel, lent et non traçable — les agents ne savaient pas où en était leur dossier, les gestionnaires n'avaient pas de vue consolidée, et les réclamations étaient traitées sans historique.",
+      "key_achievements": [
+        {
+          "context": "Les fonctionnaires devaient appeler ou se déplacer pour connaître l'état de leur dossier de prestation sociale — aucune visibilité en temps réel sur l'avancement.",
+          "action": "Développé le portail de dépôt et de suivi de dossiers avec notifications automatiques envoyées à chaque changement d'état",
+          "result": "Les fonctionnaires suivent l'avancement de leur dossier en temps réel depuis leur poste — plus de déplacement ni d'appel téléphonique pour une simple information",
+          "tech_proof": "Spring Boot 3, WebSockets SockJS/STOMP, Angular 20"
+        },
+        {
+          "context": "Les pièces justificatives (PDF, photos) devaient être jointes aux dossiers mais l'espace de stockage était contraint — pas de budget pour une infrastructure documentaire dédiée.",
+          "action": "Implémenté le stockage optimisé des documents directement dans la base de données avec compression automatique à l'entrée et décompression à la lecture",
+          "result": "Les agents joignent leurs justificatifs comme sur n'importe quel formulaire en ligne — sans infrastructure supplémentaire ni coût additionnel",
+          "tech_proof": "PostgreSQL BLOB, compression/décompression à la volée"
+        },
+        {
+          "context": "Les réclamations des fonctionnaires n'étaient pas tracées — les gestionnaires ne savaient pas qui avait traité quoi, ni quand. Aucun historique en cas de litige.",
+          "action": "Développé le module de réclamations avec attribution manuelle aux gestionnaires et journal d'audit automatique de chaque action",
+          "result": "Chaque réclamation est traçable de l'ouverture à la clôture — les gestionnaires ont un historique complet consultable à tout moment",
+          "tech_proof": "Spring AOP audit logging, PostgreSQL"
+        },
+        {
+          "context": "L'activation des nouveaux comptes fonctionnaires nécessitait une validation manuelle par les administrateurs — goulot d'étranglement à chaque vague de nouveaux inscrits.",
+          "action": "Automatisé l'activation des comptes via un email avec lien sécurisé à usage unique — les nouveaux agents activent eux-mêmes leur compte",
+          "result": "Onboarding 100% autonome sans intervention des administrateurs — les nouveaux fonctionnaires accèdent au portail en quelques minutes",
+          "tech_proof": "SendGrid API, Spring Security, JWT tokens temporaires"
+        },
+        {
+          "context": "L'application devait fonctionner de façon cohérente entre le frontend Angular et le backend Spring Boot dans l'environnement du Ministère — déploiement complexe à coordonner manuellement.",
+          "action": "Conteneurisé l'ensemble de l'application pour un déploiement en une seule commande, frontend et backend synchronisés",
+          "result": "L'application se déploie et se relance de façon identique à chaque fois — plus de divergence entre les environnements",
+          "tech_proof": "Docker Compose, Angular 20 + Spring Boot 3"
+        }
+      ],
+      "stack": [
+        "Java",
+        "Spring Boot",
+        "Spring Boot 3",
+        "Spring Security",
+        "Spring MVC",
+        "JWT",
+        "AOP",
+        "Spring AOP",
+        "Angular",
+        "Angular 20",
+        "TypeScript",
+        "Tailwind CSS",
+        "Angular Material",
+        "PostgreSQL",
+        "BLOB",
+        "WebSockets",
+        "SockJS",
+        "STOMP",
+        "SendGrid API",
+        "Docker",
+        "Docker Compose",
+        "PlantUML",
+        "Swagger",
+        "OpenAPI",
+        "REST API",
+        "RESTful API",
+        "Jira",
+        "Maven"
+      ],
+      "architecture_highlights": [
+        "Double plateforme Angular 20 + Spring Boot 3 partageant une base PostgreSQL : portail public agents + back-office admin, WebSockets SockJS/STOMP pour notifications temps réel, compression BLOB pièces justificatives, JWT, AOP audit logging, Docker Compose full-stack"
+      ],
+      "role_signal": [
+        "software_engineer"
+      ]
+    }
+  ],
+  "featured_projects": [
+    {
+      "id": "easyapply",
+      "name": "EasyApply — Smart Recruitment Platform",
+      "category": "AI / Microservices / Full-Stack / Java",
+      "date": "2024",
+      "description": "Plateforme microservices de recrutement intelligent automatisant le matching candidat/offre par embeddings sémantiques. Élimination du tri manuel des CV.",
+      "business_narrative": "Les recruteurs passaient des heures à trier manuellement des centaines de CV pour chaque offre — processus subjectif, lent et épuisant. EasyApply automatise ce tri en calculant un score de similarité sémantique entre chaque candidat et l'offre, extrait automatiquement les compétences et formations des CV PDF, et présente aux recruteurs uniquement les profils les plus pertinents. Résultat : le temps de présélection est réduit drastiquement et les décisions sont objectivées par des scores calculés.",
+      "highlights": [
+        "Moteur de matching sémantique calculant automatiquement le score d'adéquation entre un candidat et une offre — éliminant le tri manuel des CV pour les recruteurs",
+        "Extraction automatique des compétences, formations et expériences depuis des CV PDF bruts — les candidats n'ont plus à re-saisir leurs informations",
+        "Interface recruteur et candidat fluide avec tableau de bord des candidatures et profils semi-structurés",
+        "Architecture microservices permettant de faire évoluer indépendamment le moteur IA et l'interface utilisateur"
+      ],
+      "stack": [
+        "Java",
+        "Spring Boot 3",
+        "J2EE",
+        "REST API",
+        "React 18",
+        "TypeScript",
+        "Python",
+        "Flask",
+        "spaCy",
+        "PostgreSQL",
+        "PostgreSQL JSONB",
+        "Redis",
+        "JWT",
+        "Tailwind CSS",
+        "Docker",
+        "Maven"
+      ],
+      "relevance_tags": [
+        "software_engineer",
+        "ai_engineer",
+        "frontend_fullstack_ai_product",
+        "java"
+      ],
+      "role_signal": [
+        "software_engineer",
+        "ai_engineer",
+        "frontend_fullstack_ai_product"
+      ]
+    },
+    {
+      "id": "airport_hackathon",
+      "name": "Airport Intelligence Analytics Platform",
+      "category": "AI / Machine Learning / Data Analytics",
+      "date": "2024",
+      "context": "Hackathon national — 3ème place, livré en 48h en équipe",
+      "description": "Plateforme IA prédictive complète pour l'optimisation de la satisfaction passager : moteur ML 93% accuracy, NLQ via LLM, sentiment analysis 195 régions, Insights Engine ROI 2.4x.",
+      "business_narrative": "Les aéroports collectent des milliers de données passagers mais peinent à identifier les leviers concrets d'amélioration de la satisfaction. Cette plateforme, livrée en 48h lors d'un hackathon national (3ème place), permet à n'importe quel responsable de poser une question en français et d'obtenir les facteurs qui impactent le plus la satisfaction, les zones géographiques à problème et une projection du retour sur investissement des actions correctives.",
+      "highlights": [
+        "Moteur prédictif identifiant les 14 facteurs de service qui influencent le plus la satisfaction passager — avec 93% de précision sur les données réelles",
+        "Interface de questions en langage naturel : les responsables interrogent la base aéroportuaire sans SQL",
+        "Analyse des avis passagers en temps réel couvrant 195 régions géographiques — détection des zones à problème",
+        "3ème place hackathon national — plateforme complète livrée en 48h avec projection ROI 2.4x pour les actions correctives"
+      ],
+      "stack": [
+        "Python",
+        "FastAPI",
+        "React 18",
+        "TypeScript",
+        "scikit-learn",
+        "Random Forest",
+        "VADER",
+        "OpenRouter LLM",
+        "NLQ",
+        "SQLite",
+        "Pandas",
+        "NumPy"
+      ],
+      "relevance_tags": [
+        "ai_engineer",
+        "data_engineer",
+        "machine_learning"
+      ],
+      "role_signal": [
+        "ai_engineer",
+        "data_engineer"
+      ]
+    },
+    {
+      "id": "bank_pipeline",
+      "name": "Bank Review Pipeline — ETL & NLP",
+      "category": "Data Engineering / NLP / ETL",
+      "date": "2024",
+      "description": "Pipeline ETL end-to-end sous Airflow + DBT : scraping Google Maps (30 GPS points territoire marocain complet), NLP (sentiments, topics), Star Schema PostgreSQL, dashboards Looker Studio.",
+      "business_narrative": "Les banques marocaines n'avaient pas de visibilité consolidée sur la perception de leurs agences par les clients — les avis Google étaient épars et non analysés. Ce pipeline collecte automatiquement les avis de toutes les agences bancaires du Maroc, les analyse pour en extraire les sentiments et thématiques récurrentes, et les restitue dans des dashboards permettant aux responsables de comparer agences, régions et banques.",
+      "highlights": [
+        "Collecte automatisée des avis clients de toutes les agences bancaires marocaines (30 points GPS couvrant le territoire national)",
+        "Analyse automatique du sentiment et des thèmes récurrents dans chaque avis — sans lecture manuelle",
+        "Dashboards permettant de comparer la satisfaction client par agence, par région et par banque",
+        "Architecture data warehouse permettant de relancer l'analyse sur de nouvelles données sans re-développement"
+      ],
+      "stack": [
+        "Python",
+        "Apache Airflow",
+        "DBT",
+        "PostgreSQL",
+        "Star Schema",
+        "Google Maps API",
+        "Looker Studio",
+        "Docker",
+        "Gensim",
+        "TextBlob",
+        "ETL",
+        "Data Warehouse",
+        "NLP"
+      ],
+      "relevance_tags": [
+        "data_engineer"
+      ],
+      "role_signal": [
+        "data_engineer"
+      ]
+    },
+    {
+      "id": "microservices_lending",
+      "name": "Distributed Microservices Lending Architecture",
+      "category": "Backend / Distributed Systems / Java / J2EE",
+      "date": "2024",
+      "description": "Système de gestion d'emprunts Spring Cloud complet démontrant la maîtrise d'une architecture distribuée Java/J2EE : Eureka Discovery, Config Server, API Gateway, Database-per-Service, Kafka asynchrone.",
+      "highlights": [
+        "Architecture Spring Cloud complète : Eureka Discovery, Config Server, API Gateway avec routage dynamique, Database-per-Service (3 MySQL isolées) — pattern microservices Java/J2EE production-ready",
+        "Communication asynchrone découplée via Apache Kafka (Zookeeper, Producer/Consumer) avec service de notification événementiel",
+        "Orchestration Docker Compose pour déploiement cohérent de l'ensemble de l'architecture distribuée"
+      ],
+      "stack": [
+        "Java",
+        "Java 21",
+        "J2EE",
+        "Spring Boot",
+        "Spring Cloud",
+        "Spring Cloud Eureka",
+        "Spring Cloud Gateway",
+        "Spring Cloud Config",
+        "Apache Kafka",
+        "Docker",
+        "Docker Compose",
+        "MySQL",
+        "Maven",
+        "REST API",
+        "Microservices",
+        "Distributed Systems"
+      ],
+      "relevance_tags": [
+        "software_engineer",
+        "java",
+        "distributed_systems"
+      ],
+      "role_signal": [
+        "software_engineer"
+      ]
+    },
+    {
+      "id": "dental_cabinet",
+      "name": "Gestion de Cabinet Dentaire",
+      "category": "Backend / Java / Spring Boot / MVC",
+      "date": "2024",
+      "description": "Application Java/Spring Boot de gestion de cabinet dentaire : rôles métier distincts, authentification sécurisée, gestion patients/rendez-vous/traitements/factures, interface web responsive.",
+      "highlights": [
+        "Architecture MVC Spring Boot avec Spring Security — authentification sécurisée, gestion des accès par rôle (médecin, secrétaire, patient)",
+        "Modélisation Hibernate/JPA complète pour patients, rendez-vous, traitements, factures et médecins — MySQL en backend relationnel",
+        "APIs REST exposées via Spring MVC avec interface web responsive Thymeleaf — simplification des opérations courantes du cabinet",
+        "Tests unitaires et d'intégration pour valider les règles métier critiques"
+      ],
+      "stack": [
+        "Java",
+        "J2EE",
+        "Spring Boot",
+        "Spring MVC",
+        "Spring Security",
+        "Hibernate",
+        "Hibernate/JPA",
+        "JPA",
+        "ORM",
+        "MySQL",
+        "Thymeleaf",
+        "REST API",
+        "Maven",
+        "Git",
+        "Bonnes Pratiques",
+        "Tests Unitaires"
+      ],
+      "relevance_tags": [
+        "software_engineer",
+        "java",
+        "j2ee"
+      ],
+      "role_signal": [
+        "software_engineer"
+      ]
+    },
+    {
+      "id": "text_to_video",
+      "name": "Text-to-Video Generative AI Pipeline",
+      "category": "Generative AI / NLP / Computer Vision",
+      "date": "2024",
+      "description": "Pipeline génératif automatisant la création de vidéos stylisées à partir de texte brut : analyse syntaxique → génération image → compilation vidéo.",
+      "highlights": [
+        "Pipeline génératif complet : analyse syntaxique spaCy (nsubj/dobj) → génération Stable Diffusion/Ghibli Diffusion (txt2img + img2img) → compilation vidéo MoviePy"
+      ],
+      "stack": [
+        "Python",
+        "Stable Diffusion",
+        "Ghibli Diffusion",
+        "spaCy",
+        "MoviePy",
+        "NLP",
+        "Computer Vision"
+      ],
+      "relevance_tags": [
+        "ai_engineer"
+      ],
+      "role_signal": [
+        "ai_engineer"
+      ]
+    }
+  ],
+  "education_and_certs": {
+    "academic": [
+      {
+        "institution": "INSEA — Institut National de Statistique et d'Économie Appliquée",
+        "degree": "Diplôme d'Ingénieur",
+        "field": "Data & Software Engineering",
+        "period": "2023 — 2026",
+        "note": "Formation Bac+5, équivalent Master Ingénierie, spécialisation Data Science & Software Engineering"
+      },
+      {
+        "institution": "Lycée Omar Ibn Al-Khattab, Casablanca",
+        "degree": "CPGE",
+        "field": "Mathématiques & Physique (MP)",
+        "period": "2021 — 2023",
+        "note": "Classes préparatoires aux grandes écoles — filière Mathématiques-Physique"
+      },
+      {
+        "institution": "Lycée Azzaitoune",
+        "degree": "Baccalauréat Sciences Mathématiques",
+        "field": "Sciences Mathématiques",
+        "period": "2021"
+      }
+    ],
+    "certifications": [
+      {
+        "name": "CS50 Web Programming with Python and JavaScript",
+        "issuer": "Harvard University (edX)",
+        "year": "2025"
+      },
+      {
+        "name": "Database Programming with SQL",
+        "issuer": "Oracle Academy",
+        "year": "2024"
+      },
+      {
+        "name": "REST API Certification",
+        "issuer": "HackerRank",
+        "year": "2025"
+      }
+    ]
+  },
+  "optimization": {
+    "languages_spoken": [
+      {
+        "language": "Arabe",
+        "level": "Langue maternelle"
+      },
+      {
+        "language": "Français",
+        "level": "Courant (C1)"
+      },
+      {
+        "language": "Anglais",
+        "level": "Professionnel (B2)"
+      }
+    ],
+    "ats_keyword_aliases": {
+      "note": "Dictionnaire d'alias pour éviter les faux-négatifs dans build_keyword_grounding",
+      "j2ee": [
+        "j2ee",
+        "java ee",
+        "java/j2ee",
+        "jee",
+        "java enterprise edition"
+      ],
+      "spring_security": [
+        "spring security",
+        "spring security 6",
+        "spring security 5"
+      ],
+      "hibernate": [
+        "hibernate",
+        "hibernate/jpa",
+        "jpa",
+        "orm",
+        "spring data jpa"
+      ],
+      "maven": [
+        "maven",
+        "apache maven"
+      ],
+      "git": [
+        "git",
+        "github",
+        "gitlab"
+      ],
+      "rest": [
+        "rest api",
+        "api rest",
+        "rest apis",
+        "restful",
+        "restful api"
+      ],
+      "soap": [
+        "soap",
+        "web services soap",
+        "jax-ws",
+        "web services"
+      ],
+      "docker": [
+        "docker",
+        "docker compose",
+        "containerisation",
+        "containers"
+      ],
+      "ci_cd": [
+        "ci/cd",
+        "github actions",
+        "gitlab ci",
+        "jenkins",
+        "devops"
+      ],
+      "postgresql": [
+        "postgresql",
+        "postgres",
+        "pg"
+      ],
+      "redis": [
+        "redis",
+        "cache redis",
+        "distributed cache"
+      ],
+      "kafka": [
+        "kafka",
+        "apache kafka",
+        "event streaming"
+      ],
+      "jwt": [
+        "jwt",
+        "json web token",
+        "token"
+      ],
+      "microservices": [
+        "microservices",
+        "microservice",
+        "micro-services",
+        "distributed systems"
+      ],
+      "qualite": [
+        "qualite",
+        "qualite du code",
+        "code quality",
+        "bonnes pratiques",
+        "best practices",
+        "maintenabilite",
+        "maintenabilité"
+      ],
+      "tests": [
+        "tests",
+        "tests unitaires",
+        "unit tests",
+        "junit",
+        "mockito",
+        "test automation",
+        "testing",
+        "qa",
+        "quality assurance"
+      ],
+      "revue_code": [
+        "revue de code",
+        "code review",
+        "peer review"
+      ],
+      "agile": [
+        "agile",
+        "scrum",
+        "kanban",
+        "sprint"
+      ]
+    },
+    "seniority_self_assessment": {
+      "level": "Junior / Entry-Level",
+      "experience_months": 12,
+      "note": "3 stages ingénieur livrés en conditions réelles : DXC Technology (PFE en cours), Lotus Capital (4 mois), MICEPP (3 mois)"
+    },
+    "differentiators": [
+      "Profil hybride Java/J2EE (Spring Boot, microservices, SOAP/REST), React/TypeScript et Python/IA — expériences en backend, frontend et data",
+      "3 systèmes développés de bout en bout en conditions réelles (fintech, secteur public, tech consulting)",
+      "Comprend la logique qualité : APIs testées via Postman/Swagger, revues de code, AOP audit, SELECT FOR UPDATE, observabilité Micrometer/Sleuth",
+      "Capacité à monter rapidement en compétences : chaque stage a couvert un nouvel environnement technique complexe"
+    ]
+  }
+}
